@@ -53,10 +53,11 @@ export class PlayerFormComponent {
       this.playerName == '' ||
       this.playerNumber == undefined ||
       this.playerGameID == '' ||
-      this.playerHomeTown == '' ||
       this.playerEmail == '' ||
       this.playerEnrollment == ''
     ) {
+      console.log(this.playerEnrollment);
+
       this.errMsg = 'Please fill all the fields';
       return;
     }

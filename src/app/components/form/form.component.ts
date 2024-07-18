@@ -98,6 +98,14 @@ export class FormComponent {
     );
   }
   submit() {
+    // verify email address is valid
+    let email = this.teamEmail;
+    let at = email.indexOf('@');
+    let dot = email.lastIndexOf('.');
+    if (at < 1 || dot < at + 2 || dot + 2 >= email.length) {
+      alert('Please enter a valid email');
+      return;
+    }
     let player1 = localStorage.getItem('1');
     let player2 = localStorage.getItem('2');
     let player3 = localStorage.getItem('3');
@@ -136,7 +144,7 @@ export class FormComponent {
       (err) => {
         console.log(err);
         this.loadding = false;
-        alert('Something went wrong');
+        alert('Some data is incorrect');
       }
     );
   }
