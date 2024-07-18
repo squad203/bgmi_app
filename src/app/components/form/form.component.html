@@ -1,0 +1,107 @@
+<main *ngIf="tournamentId">
+    <img class="f-bg" src="assets/bg.png" alt="">
+    <section>
+        <h1>BGMI Tournament</h1>
+        <h1> Registration</h1>
+        <div class="inputClass">
+            <p for="fname"></p>
+            <div class="input">
+                <img src="assets/icons/upload.svg" alt="">
+                <input [disabled]="loadding" (change)="onfileChange($event)" type="file" placeholder="Upload Logo">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Team Name</p>
+            <div class="input">
+                <img src="assets/icons/team.svg" alt="">
+                <input [disabled]="loadding" (input)="onInput($event)" [(ngModel)]="teamName" name="teamName"
+                    type="text" placeholder="Team Name">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Email Address</p>
+            <div class="input">
+                <img src="assets/icons/email.svg" alt="">
+                <input [disabled]="loadding" [disabled]="loadding" (input)="onInput($event)" [(ngModel)]="teamEmail"
+                    name="email" type="text" placeholder="team@bgmi.com">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Mobile Number</p>
+            <div class="input">
+                <img src="assets/icons/phone.svg" alt="">
+                <input [disabled]="loadding" (input)="onInput($event,'number')" [(ngModel)]="teamPhone" name="phone"
+                    type="number" placeholder="8780135672">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Team College</p>
+            <div class="input">
+                <!-- <img src="assets/icons/phone.svg" alt=""> -->
+                <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCollege"
+                    name="college" placeholder="My College">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Team City</p>
+            <div class="input">
+                <!-- <img src="assets/icons/phone.svg" alt=""> -->
+                <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCity" name="city"
+                    placeholder="Ahemedabad">
+            </div>
+        </div>
+        <div class="p-title">
+            <img class="first-arrow" src="assets/icons/right_arrow.svg" alt="">
+            <p>Players&nbsp;Name</p>
+            <img src="assets/icons/right_arrow.svg" alt="">
+
+        </div>
+        <div class="players">
+            <div class="inputClass" (click)="goToPlayers(1)">
+                <!-- <p for="fname"></p> -->
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loadding" type="text" [value]="player1" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+                </div>
+            </div>
+            <div class="inputClass" (click)="goToPlayers(2)">
+                <!-- <p for="fname">Team City</p> -->
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loadding" type="text" [value]="player2" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+
+                </div>
+            </div>
+            <div class="inputClass" (click)="goToPlayers(3)">
+                <!-- <p for="fname">Team City</p> -->
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loadding" type="text" [value]="player3" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+
+                </div>
+            </div>
+            <div class="inputClass" (click)="goToPlayers(4)">
+                <!-- <p for="fname">Team City</p> -->
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loadding" type="text" [value]="player4" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+
+                </div>
+            </div>
+        </div>
+
+        <button [disabled]="loadding" (click)="submit()">
+            <p>{{ loadding ? "Registering..." : "Register"}}</p>
+        </button>
+
+
+
+    </section>
+
+</main>
+
+<h1 *ngIf="!tournamentId">Invalid Tournament</h1>

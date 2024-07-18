@@ -1,0 +1,157 @@
+<app-nav></app-nav>
+<h1 class="title">Tournaments - {{tournaments.length}}</h1>
+<main class="mainSection">
+
+    <table class="table  table-striped">
+        <thead class="thead-dark ">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tournament Name</th>
+                <th scope="col">Org. Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Pooled Price</th>
+                <th scope="col">Max Teams</th>
+                <th scope="col">Teams</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let i of tournaments; let e = index">
+                <th scope="row">{{e+1}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.org_name}}</td>
+                <td>{{i.city}}</td>
+                <td>₹{{i.pool_prize}}</td>
+                <td>{{i.max_teams}}</td>
+                <td>{{i.teams}}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<div class="floating-button" (click)="openPopup()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+    </svg>
+</div>
+
+<div *ngIf="createPopup" class="popup">
+    <div class="card">
+
+        <div class="popup-title">
+            <h4>Create Tournament</h4>
+            <svg (click)="closePopup()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-x" viewBox="0 0 16 16">
+                <path
+                    d="M4.354 4.354a.5.5 0 0 1 .708 0L8 7.293l3.938-3.939a.5.5 0 0 1 .708.708L8.707 8l3.939 3.938a.5.5 0 0 1-.708.708L8 8.707l-3.938 3.939a.5.5 0 0 1-.708-.708L7.293 8 3.354 4.062a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </div>
+        <div class="content">
+            <form action="">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+
+
+                            <div class="form-group">
+                                <label for="tournamentName">Tournament Name</label>
+                                <input [disabled]="loadding" type="text" [(ngModel)]="tournament_name"
+                                    class="form-control" id="tournamentName" name="tournamentName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+
+                            <div class="form-group">
+                                <label for="OrganizationName">Organization Name</label>
+                                <input [disabled]="loadding" type="text" [(ngModel)]="org_name" class="form-control"
+                                    id="OrganizationName" name="OrganizationName">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="tur-type">Team Type</label>
+                                <select [disabled]="loadding" [(ngModel)]="team_type" class="form-select" id="tur-type"
+                                    name="tur-type">
+                                    <!-- <option value="Solo">Solo</option> -->
+                                    <!-- <option value="Duo">Duo</option> -->
+                                    <option selected value="Team">Team</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+
+                            <div class="form-group">
+                                <label for="CityName">City Name</label>
+                                <input [disabled]="loadding" [(ngModel)]="city" type="text" class="form-control"
+                                    id="CityName" name="CityName">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+
+                            <div class="form-group">
+                                <label for="team">Max Team</label>
+                                <input [disabled]="loadding" [(ngModel)]="max_team" type="number" class="form-control"
+                                    id="team" name="team">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="pooled_price">Pooled Price</label>
+                                <input [disabled]="loadding" [(ngModel)]="pool_price" type="number" class="form-control"
+                                    id="pooled_price" name="pooled_price">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="pooled_price">Entry Fees</label>
+                                <input [disabled]="loadding" [(ngModel)]="entryFees" type="number" class="form-control"
+                                    id="entryFees" name="entryFees">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+
+                        <div class="form-group">
+                            <label for="Logo">Org. Logo</label>
+                            <input [disabled]="loadding" type="file" (change)="selectOrgLogo($event)"
+                                class="form-control" id="logo" name="logo">
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Logo">Tournament Banner</label>
+                            <input [disabled]="loadding" type="file" (change)="selectTourLogo($event)"
+                                class="form-control" id="logo" name="logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+
+                    <button [disabled]="loadding" (click)="submit()" type="button"
+                        class="btn btn-primary">{{loadding?"Creating...":"Create"}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

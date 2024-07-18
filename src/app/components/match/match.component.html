@@ -1,0 +1,268 @@
+<app-nav></app-nav>
+<h1 class="title">Match - {{matchs.length}}</h1>
+<main class="mainSection">
+    <button class="btn btn-light me-3" (click)="changeToTable()">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-table"
+            viewBox="0 0 16 16">
+            <path
+                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
+        </svg>
+    </button>
+    <!-- <button class="btn btn-light ms-3" (click)="changeToCard()">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black"
+            class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
+            <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+        </svg>
+    </button> -->
+    <br>
+    <br>
+
+    <table *ngIf="view == 'table'" class="table  table-striped">
+        <thead class="thead-dark ">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Match Name</th>
+                <th scope="col">Tournament</th>
+                <th scope="col">Type</th>
+                <th scope="col">Map</th>
+                <th scope="col">Mode</th>
+                <th scope="col">Date</th>
+                <th scope="col">Teams</th>
+                <th scope="col" class="text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let i of matchs;let e = index">
+                <th scope="row">{{e+1}}</th>
+                <td>{{i.match_name}}</td>
+                <td>{{i.tournament}}</td>
+                <td>{{i.match_type}}</td>
+                <td>{{i.map}}</td>
+                <td>{{i.mode}}</td>
+                <td>{{i.match_date | date:'dd-MM-yyyy HH:MM a'}}</td>
+                <td>0</td>
+                <td
+                    [ngClass]="{'pending':i.match_status == 'pending','approved':i.match_status == 'completed','reject':i.match_status == 'canceled'}">
+                    <p>{{i.match_status}}</p>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <div *ngIf="view == 'card' " class="cards">
+
+        <div class="card">
+            <div class="cardTitle">
+                <h4>Match</h4>
+                <p>3</p>
+            </div>
+            <div (click)="navigateToTeam('my match 1')" class="content">
+                <b>12/04/2024 10:40 PM</b>
+                <br>
+                <div class="winners">
+                    <p class="w-title">Winners</p>
+                    <div class="mvp-div">
+                        <p>&#64;smituPatel9090 - 10 </p>
+                        <p class="mvp">MVP</p>
+                    </div>
+                    <div class="team-div">
+
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">1</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">2</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">3</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="cardTitle">
+                <h4>Match</h4>
+                <p>3</p>
+            </div>
+            <div (click)="navigateToTeam('my match 1')" class="content">
+                <b>12/04/2024 10:40 PM</b>
+                <br>
+                <div class="winners">
+                    <p class="w-title">Winners</p>
+                    <div class="mvp-div">
+                        <p>&#64;smituPatel9090 - 10 </p>
+                        <p class="mvp">MVP</p>
+                    </div>
+                    <div class="team-div">
+
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">1</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">2</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">3</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="cardTitle">
+                <h4>Match</h4>
+                <p>3</p>
+            </div>
+            <div (click)="navigateToTeam('my match 1')" class="content">
+                <b>12/04/2024 10:40 PM</b>
+                <br>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="cardTitle">
+                <h4>Match</h4>
+                <p>3</p>
+            </div>
+            <div (click)="navigateToTeam('my match 1')" class="content">
+                <b>12/04/2024 10:40 PM</b>
+                <br>
+                <div class="winners">
+                    <p class="w-title">Winners</p>
+                    <div class="mvp-div">
+                        <p>&#64;smituPatel9090 - 10 </p>
+                        <p class="mvp">MVP</p>
+                    </div>
+                    <div class="team-div">
+
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">1</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">2</p>
+                    </div>
+                    <div class="team-div">
+                        <p>Team Name - <b>90</b></p>
+                        <p class="t-rank">3</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="cardTitle">
+                <h4>Match</h4>
+                <p>3</p>
+            </div>
+            <div (click)="navigateToTeam('my match 1')" class="content">
+                <b>12/04/2024 10:40 PM</b>
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+<div class="floating-button" (click)="openPopup()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+    </svg>
+</div>
+
+<div *ngIf="createPopup" class="popup">
+    <div class="card">
+        <div class="popup-title">
+            <h4>Create Match</h4>
+            <svg (click)="closePopup()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                class="bi bi-x" viewBox="0 0 16 16">
+                <path
+                    d="M4.354 4.354a.5.5 0 0 1 .708 0L8 7.293l3.938-3.939a.5.5 0 0 1 .708.708L8.707 8l3.939 3.938a.5.5 0 0 1-.708.708L8 8.707l-3.938 3.939a.5.5 0 0 1-.708-.708L7.293 8 3.354 4.062a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </div>
+        <div class="content">
+            <form>
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="matchName">Match Name</label>
+                            <input [disabled]="loading" [(ngModel)]="name" type="text" class="form-control"
+                                id="matchName" name="matchName">
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Date">Match Type</label>
+                            <select [disabled]="loading" [(ngModel)]="type" name="match-type" id="match-type"
+                                class="form-select">
+                                <option value="regular">Regular</option>
+                                <option value="semi-final">Semi-Final</option>
+                                <option value="final">Final</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Date">Tournamnent</label>
+                            <select [disabled]="loading" [(ngModel)]="tournament_id" name="match-type" id="match-type"
+                                class="form-select">
+                                <option *ngFor="let i of this.tournaments" [value]="i.id">{{i.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Date">Map</label>
+                            <input [disabled]="loading" [(ngModel)]="map" type="text" class="form-control" id="map"
+                                name="map">
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Date">Mode</label>
+                            <input [disabled]="loading" [(ngModel)]="mode" type="text" class="form-control" id="map"
+                                name="map">
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4 mb-3">
+                        <div class="form-group">
+                            <label for="Date">Match Datetime</label>
+                            <input [disabled]="loading" [(ngModel)]="date" type="datetime-local" class="form-control"
+                                id="Date" name="Date">
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="mt-4">
+                    <button [disabled]="loading" type="button" (click)="submit()" class="btn btn-primary">{{loading
+                        ?"Creating..." : "Submit"}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

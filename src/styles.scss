@@ -1,0 +1,216 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Poppins";
+  padding: 0;
+  margin: 0;
+}
+input:focus {
+  outline: none;
+  border: 1px solid #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+body {
+  background-color: #eeeeee;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.mainSection {
+  margin-left: 300px;
+}
+.title {
+  margin-left: 280px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding: 10px 20px;
+  background-color: #2869ed;
+  color: white;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2869ed;
+  color: white;
+  padding: 20px 21px;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  .card {
+    animation: popup 0.2s ease;
+    box-shadow: 0px 0px 10px black;
+    width: 60%;
+    margin: 5% auto;
+    border-radius: 20px;
+    padding: 0 !important;
+    .popup-title {
+      margin: 0 !important;
+      padding: 10px 20px;
+      background-color: #2869ed;
+      color: white;
+      border-radius: 17px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      svg {
+        cursor: pointer;
+      }
+      h4 {
+        margin: 0;
+      }
+    }
+    .content {
+      padding: 30px;
+    }
+  }
+}
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.active {
+  background-color: #2869ed !important;
+  color: #fff !important;
+  svg {
+    fill: #fff !important;
+  }
+}
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  width: 380px;
+  border-radius: 20px;
+  border: 3px solid #2869ed;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  margin: 5px;
+  .cardTitle {
+    background-color: #2869ed;
+    border-radius: 17px;
+
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    p {
+      margin: 0;
+    }
+    h4 {
+      margin: 0;
+    }
+  }
+  .content {
+    // text-align: center;
+
+    padding: 20px;
+    .winners {
+      margin-top: 10px;
+      .w-title {
+        font-size: 20px;
+        border-bottom: 2px solid black;
+        font-weight: bold;
+      }
+      .mvp-div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: green;
+        font-weight: bold;
+      }
+      .team-div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .t-rank {
+          font-weight: bold;
+        }
+        .t-button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            padding: 5px 15px;
+            font-size: 20px;
+            // text-align: center;
+          }
+          font-weight: bold;
+        }
+      }
+      text-align: left;
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+.pending {
+  p {
+    background-color: #fdc367;
+    color: #fff;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+.rejected {
+  p {
+    background-color: #dc364e;
+    color: #fff;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+  }
+  span {
+    background-color: #dc364e;
+    color: #fff;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2px 10px;
+  }
+}
+.approved {
+  font-weight: bold;
+  p {
+    background-color: #318755;
+    color: #fff;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+  }
+  span {
+    background-color: #318755;
+    color: #fff;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2px 10px;
+  }
+}

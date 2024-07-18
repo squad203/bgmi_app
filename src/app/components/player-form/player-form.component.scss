@@ -1,0 +1,112 @@
+.f-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+form {
+  position: relative;
+  padding: 20px;
+  top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    background: -webkit-linear-gradient(0deg, #ff6a12, #ffffff, #117205);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .p-title {
+    display: flex;
+    p {
+      color: white;
+      margin: 0px 10px;
+    }
+    .first-arrow {
+      transform: rotate(180deg);
+    }
+  }
+  .players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .inputClass {
+      cursor: pointer;
+      width: 45%;
+    }
+  }
+  button {
+    margin-top: 20px;
+    background: url(../../../assets/signup.svg) no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    p {
+      font-size: 20px;
+      color: black;
+      margin: 0;
+    }
+  }
+}
+
+.inputClass {
+  width: 100%;
+  margin: 5px 3px;
+  p {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #fff !important;
+  }
+  .input {
+    background: linear-gradient(
+      171deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    );
+    display: flex;
+    align-items: center;
+    border: 1px solid #ffffff76;
+    box-shadow: 0px 0px 1px 0px #ffffff81;
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 10px;
+    img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    .r-icon {
+      margin-left: 5px !important;
+      margin-right: 00px !important;
+      width: 20px;
+    }
+    input {
+      width: 100%;
+
+      border: none;
+      color: white;
+      &:focus {
+        outline: none;
+        border: none;
+      }
+      background: none;
+    }
+    &::placeholder {
+      color: #ffffff;
+    }
+    &:focus-within {
+      border: 1px solid #fff;
+    }
+  }
+}

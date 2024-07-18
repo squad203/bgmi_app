@@ -1,0 +1,60 @@
+<main>
+    <img class="f-bg" src="assets/bg.png" alt="">
+    <form (submit)="goToPlayers()">
+        <h1>BGMI Tournament</h1>
+        <h1> Registration</h1>
+
+
+        <div class="p-title">
+            <img class="first-arrow" src="assets/icons/right_arrow.svg" alt="">
+            <p>Players&nbsp;Name</p>
+            <img src="assets/icons/right_arrow.svg" alt="">
+
+        </div>
+        <div class="inputClass">
+            <p for="fname">Name</p>
+            <div class="input">
+                <img src="assets/icons/team.svg" alt="">
+                <input required name="name" [(ngModel)]="playerName" type="text" placeholder="Your Name">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Game ID</p>
+            <div class="input">
+                <img src="assets/icons/pen.svg" alt="">
+                <input required name="gameId" [(ngModel)]="playerGameID" type="text" placeholder="@techyBoy">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Mobile Number</p>
+            <div class="input">
+                <img src="assets/icons/phone.svg" alt="">
+                <input required name="number" (input)="onInput($event,'number')" [(ngModel)]="playerNumber"
+                    type="number" placeholder="+91 8780135672">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Email Address</p>
+            <div class="input">
+                <img src="assets/icons/email.svg" alt="">
+                <input required name="email" [(ngModel)]="playerEmail" type="email" placeholder="Email Address">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Select Your Home Town</p>
+            <div class="input">
+                <!-- <img src="assets/icons/phone.svg" alt=""> -->
+                <input required name="town" [(ngModel)]="playerHomeTown" type="text"
+                    placeholder="Select Your Home Town">
+            </div>
+        </div>
+
+        <p *ngIf="errMsg" style="color: rgb(255, 91, 91);">{{errMsg}}</p>
+
+        <button (click)="goToPlayers()">
+            <p>Add Player</p>
+        </button>
+    </form>
+
+
+</main>
