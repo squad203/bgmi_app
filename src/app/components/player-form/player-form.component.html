@@ -15,44 +15,48 @@
             <p for="fname">Name</p>
             <div class="input">
                 <img src="assets/icons/team.svg" alt="">
-                <input required name="name" [(ngModel)]="playerName" type="text" placeholder="Your Name">
+                <input [disabled]="loading" required name="name" [(ngModel)]="playerName" type="text"
+                    placeholder="Your Name">
             </div>
         </div>
         <div class="inputClass">
             <p for="fname">Drona's Enrollment number (Find in App)</p>
             <div class="input">
                 <img src="assets/icons/team.svg" alt="">
-                <input required name="name" [(ngModel)]="playerEnrollment" type="text" placeholder="DFDC0000000000">
+                <input [disabled]="loading" required name="name" [(ngModel)]="playerEnrollment" type="text"
+                    placeholder="DFDC0000000000">
             </div>
         </div>
         <div class="inputClass">
             <p for="fname">Game ID</p>
             <div class="input">
                 <img src="assets/icons/pen.svg" alt="">
-                <input required name="gameId" [(ngModel)]="playerGameID" type="text" placeholder="@techyBoy">
+                <input [disabled]="loading" required name="gameId" [(ngModel)]="playerGameID" type="text"
+                    placeholder="@techyBoy">
             </div>
         </div>
         <div class="inputClass">
             <p for="fname">Mobile Number</p>
             <div class="input">
                 <img src="assets/icons/phone.svg" alt="">
-                <input required name="number" (input)="onInput($event,'number')" [(ngModel)]="playerNumber"
-                    type="number" placeholder="+91 8780135672">
+                <input [disabled]="loading" required name="number" (input)="onInput($event,'number')"
+                    [(ngModel)]="playerNumber" type="number" placeholder="+91 8780135672">
             </div>
         </div>
         <div class="inputClass">
             <p for="fname">Email Address</p>
             <div class="input">
                 <img src="assets/icons/email.svg" alt="">
-                <input required name="email" [(ngModel)]="playerEmail" type="email" placeholder="Email Address">
+                <input [disabled]="loading" required name="email" [(ngModel)]="playerEmail" type="email"
+                    placeholder="Email Address">
             </div>
         </div>
 
 
         <p *ngIf="errMsg" style="color: rgb(255, 91, 91);">{{errMsg}}</p>
 
-        <button (click)="goToPlayers()">
-            <p>Add Player</p>
+        <button [disabled]="loading" (click)="goToPlayers()">
+            <p>{{loading ? "Verifing... " : "Add Player"}}</p>
         </button>
     </form>
 

@@ -11,3 +11,4 @@ export const toggleVerification = url + 'bgmi/toggleVerification';
 export const togglePaymentReceived = url + 'bgmi/togglePaymentReceived';
 export const toggleIsDead = url + 'bgmi/toggleIsDead';
 export const updateKill = url + 'bgmi/updateKill';
+export const verifyEnrollment = url + 'bgmi/verifyEnrollment/';

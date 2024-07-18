@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { verifyEnrollment } from '../../config';
 
 @Component({
   selector: 'app-player-form',
@@ -17,7 +19,12 @@ export class PlayerFormComponent {
   playerEnrollment: string = '';
   errMsg: string | undefined;
   tournamentId: string | undefined;
-  constructor(private router: Router, public activatedRoute: ActivatedRoute) {}
+  loading = false;
+  constructor(
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private http: HttpClient
+  ) {}
   playerCount: number = 0;
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -43,11 +50,14 @@ export class PlayerFormComponent {
       }
     }
   }
+  async checkEnrollment() {}
+
   goToPlayers() {
     if (this.playerNumber?.toString().length != 10) {
       this.errMsg = 'Please enter a valid phone number';
       return;
     }
+
     // #verify all field are filled
     if (
       this.playerName == '' ||
@@ -68,20 +78,40 @@ export class PlayerFormComponent {
       this.errMsg = 'Please enter a valid email';
       return;
     }
-    let data = {
-      player_name: this.playerName,
-      game_id: this.playerGameID,
-      captain: this.playerCount == 1 ? true : false,
-      mobile: this.playerNumber,
-      email: this.playerEmail,
-      enrollNo: this.playerEnrollment,
-      age: 0,
-      city: '',
-      college: '',
-    };
-    if (this.playerCount != 0) {
-      localStorage.setItem(this.playerCount.toString(), JSON.stringify(data));
-    }
-    this.router.navigate(['/form/' + this.tournamentId]);
+    this.loading = true;
+    this.http.get(verifyEnrollment + this.playerEnrollment).subscribe(
+      (data: any) => {
+        if (data) {
+          this.loading = false;
+          let data = {
+            player_name: this.playerName,
+            game_id: this.playerGameID,
+            captain: this.playerCount == 1 ? true : false,
+            mobile: this.playerNumber,
+            email: this.playerEmail,
+            enrollNo: this.playerEnrollment,
+            age: 0,
+            city: '',
+            college: '',
+          };
+          if (this.playerCount != 0) {
+            localStorage.setItem(
+              this.playerCount.toString(),
+              JSON.stringify(data)
+            );
+          }
+          this.router.navigate(['/form/' + this.tournamentId]);
+        } else {
+          alert('Enrollment not found');
+          this.loading = false;
+          return;
+        }
+      },
+      (err) => {
+        alert('Enrollment not found');
+        this.loading = false;
+        return;
+      }
+    );
   }
 }
