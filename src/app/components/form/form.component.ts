@@ -64,6 +64,8 @@ export class FormComponent {
     }
   }
   onInput(event: any, type: string = 'text') {
+    this.teamPhone = event.target.value;
+
     if (type == 'number') {
       if (event.target.value.length > 10) {
         event.target.value = event.target.value.slice(0, 10);
