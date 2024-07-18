@@ -4,7 +4,7 @@
         <h1>BGMI Tournament</h1>
         <h1> Registration</h1>
         <div class="inputClass">
-            <p for="fname"></p>
+            <p for="fname">Team Logo</p>
             <div class="input">
                 <img src="assets/icons/upload.svg" alt="">
                 <input [disabled]="loadding" (change)="onfileChange($event)" type="file" placeholder="Upload Logo">
@@ -89,7 +89,6 @@
                     <img src="assets/icons/player.svg" alt="">
                     <input [disabled]="loadding" type="text" [value]="player4" readonly>
                     <img src="assets/icons/pen.svg" alt="" class="r-icon">
-
                 </div>
             </div>
         </div>
