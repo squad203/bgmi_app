@@ -40,14 +40,7 @@
                 <input required name="email" [(ngModel)]="playerEmail" type="email" placeholder="Email Address">
             </div>
         </div>
-        <div class="inputClass">
-            <p for="fname">Select Your Home Town</p>
-            <div class="input">
-                <!-- <img src="assets/icons/phone.svg" alt=""> -->
-                <input required name="town" [(ngModel)]="playerHomeTown" type="text"
-                    placeholder="Select Your Home Town">
-            </div>
-        </div>
+
 
         <p *ngIf="errMsg" style="color: rgb(255, 91, 91);">{{errMsg}}</p>
 

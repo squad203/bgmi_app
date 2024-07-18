@@ -54,7 +54,7 @@ export class PlayerFormComponent {
       mobile: this.playerNumber,
       email: this.playerEmail,
       age: 0,
-      city: this.playerHomeTown,
+      city: '',
       college: '',
     };
     if (this.playerCount != 0) {
