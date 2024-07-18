@@ -107,7 +107,7 @@ export class FormComponent {
       alert('Please fill out all player information');
       return;
     }
-    if (this.teamPhone.length != 10) {
+    if (this.teamPhone.toString().length != 10) {
       alert('Phone number should be 10 digit');
       return;
     }
