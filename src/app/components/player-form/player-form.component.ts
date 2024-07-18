@@ -14,6 +14,7 @@ export class PlayerFormComponent {
   playerGameID: string = '';
   playerHomeTown: string = '';
   playerEmail: string = '';
+  playerEnrollment: string = '';
   errMsg: string | undefined;
   tournamentId: string | undefined;
   constructor(private router: Router, public activatedRoute: ActivatedRoute) {}
@@ -28,6 +29,7 @@ export class PlayerFormComponent {
         this.playerName = JSON.parse(data).player_name;
         this.playerNumber = JSON.parse(data).mobile;
         this.playerGameID = JSON.parse(data).game_id;
+        this.playerEnrollment = JSON.parse(data).enrollNo;
         this.playerHomeTown = JSON.parse(data).city;
         this.playerEmail = JSON.parse(data).email;
       }
@@ -46,13 +48,32 @@ export class PlayerFormComponent {
       this.errMsg = 'Please enter a valid phone number';
       return;
     }
-
+    // #verify all field are filled
+    if (
+      this.playerName == '' ||
+      this.playerNumber == undefined ||
+      this.playerGameID == '' ||
+      this.playerHomeTown == '' ||
+      this.playerEmail == '' ||
+      this.playerEnrollment == ''
+    ) {
+      this.errMsg = 'Please fill all the fields';
+      return;
+    }
+    let email = this.playerEmail;
+    let at = email.indexOf('@');
+    let dot = email.lastIndexOf('.');
+    if (at < 1 || dot < at + 2 || dot + 2 >= email.length) {
+      this.errMsg = 'Please enter a valid email';
+      return;
+    }
     let data = {
       player_name: this.playerName,
       game_id: this.playerGameID,
       captain: this.playerCount == 1 ? true : false,
       mobile: this.playerNumber,
       email: this.playerEmail,
+      enrollNo: this.playerEnrollment,
       age: 0,
       city: '',
       college: '',
