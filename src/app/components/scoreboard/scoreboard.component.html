@@ -1,1 +1,62 @@
-<p>scoreboard works!</p>
+<div class="main">
+    <div class="scoreboard">
+        <br>
+        <div class="scoreboard__content">
+            <div class="scoreboard__content__table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Kill</th>
+                            <!-- <th></th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [ngClass]="{'dead':player.is_dead}" *ngFor="let player of players; let i = index">
+                            <td>#{{ i + 1 }}</td>
+                            <td class="team">{{ player.name }}</td>
+                            <td *ngIf="!player.is_dead">{{ player.kill }}</td>
+                            <td class="eliminate" *ngIf="player.is_dead">ELIMINATED</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="scoreboard">
+        <div class="scoreboard__content">
+            <br>
+            <div class="scoreboard__content__table">
+                <table>
+                    <thead>
+                        <tr class="thead">
+                            <th>Rank</th>
+                            <th>Team </th>
+                            <th>Kill</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-team" [ngClass]="{'dead':player.is_eliminated}"
+                            *ngFor="let player of team; let i = index">
+                            <td>#{{ i + 1 }}</td>
+                            <td class="team">{{ player.name }}</td>
+                            <td *ngIf="!player.is_eliminated" [ngClass]="{'d-none':player.is_eliminated}">{{ player.kill
+                                }}</td>
+                            <td class="players-count">
+                                <div *ngIf="!player.is_eliminated">
+                                    <div class="circle" [ngClass]="{'player-dead':i.is_dead}"
+                                        *ngFor="let i of player.alive"></div>
+                                </div>
+                            </td>
+                            <td class="eliminate" *ngIf="player.is_eliminated">ELIMINATED</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
