@@ -93,6 +93,45 @@ export class FormComponent {
       alert('Please fill out all team information');
       return;
     }
+
+    if (number == 2) {
+      let one = localStorage.getItem('1');
+
+      if (!one) {
+        alert('Please fill first player information');
+        return;
+      }
+    }
+    if (number == 3) {
+      let one = localStorage.getItem('1');
+      let two = localStorage.getItem('2');
+      if (!one) {
+        alert('Please fill first player information');
+        return;
+      }
+
+      if (!two) {
+        alert('Please fill second player information');
+        return;
+      }
+    }
+    if (number == 4) {
+      let one = localStorage.getItem('1');
+      let two = localStorage.getItem('2');
+      let three = localStorage.getItem('3');
+      if (!one) {
+        alert('Please fill second player information');
+        return;
+      }
+      if (!two) {
+        alert('Please fill second player information');
+        return;
+      }
+      if (!three) {
+        alert('Please fill second player information');
+        return;
+      }
+    }
     this.router.navigateByUrl(
       '/players?player=' + number + '&tournamentId=' + this.tournamentId
     );
@@ -119,10 +158,32 @@ export class FormComponent {
       alert('Phone number should be 10 digit');
       return;
     }
+    if (
+      JSON.parse(player1).enrollNo == JSON.parse(player2).enrollNo ||
+      JSON.parse(player1).enrollNo == JSON.parse(player3).enrollNo ||
+      JSON.parse(player1).enrollNo == JSON.parse(player4).enrollNo ||
+      JSON.parse(player2).enrollNo == JSON.parse(player1).enrollNo ||
+      JSON.parse(player2).enrollNo == JSON.parse(player3).enrollNo ||
+      JSON.parse(player2).enrollNo == JSON.parse(player4).enrollNo ||
+      JSON.parse(player3).enrollNo == JSON.parse(player1).enrollNo ||
+      JSON.parse(player3).enrollNo == JSON.parse(player2).enrollNo ||
+      JSON.parse(player3).enrollNo == JSON.parse(player4).enrollNo ||
+      JSON.parse(player4).enrollNo == JSON.parse(player1).enrollNo ||
+      JSON.parse(player4).enrollNo == JSON.parse(player2).enrollNo ||
+      JSON.parse(player4).enrollNo == JSON.parse(player3).enrollNo ||
+      JSON.parse(player1).enrollNo == '' ||
+      JSON.parse(player2).enrollNo == '' ||
+      JSON.parse(player3).enrollNo == '' ||
+      JSON.parse(player4).enrollNo == ''
+    ) {
+      alert('Duplicate Enrollment number Found');
+      return;
+    }
     player1 = JSON.parse(player1);
     player2 = JSON.parse(player2);
     player3 = JSON.parse(player3);
     player4 = JSON.parse(player4);
+
     let player = [player1, player2, player3, player4];
     var data = new FormData();
     data.append('tournament_id', this.tournamentId || '');
