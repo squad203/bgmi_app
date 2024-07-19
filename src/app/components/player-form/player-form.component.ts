@@ -49,6 +49,10 @@ export class PlayerFormComponent {
         this.playerNumber = event.target.value;
       }
     }
+    if (type == 'gameId') {
+      event.target.value = event.target.value.toString().trim();
+      this.playerGameID = event.target.value;
+    }
   }
   async checkEnrollment() {}
 
