@@ -34,7 +34,7 @@
             <div class="input">
                 <img src="assets/icons/pen.svg" alt="">
                 <input [disabled]="loading" required name="gameId" [(ngModel)]="playerGameID" type="text"
-                    placeholder="@techyBoy">
+                    placeholder="@techyBoy" pattern="[^\s]+" title="No spaces allowed">
             </div>
         </div>
         <div class="inputClass">

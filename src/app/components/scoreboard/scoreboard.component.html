@@ -36,7 +36,7 @@
                             <th>Rank</th>
                             <th>Team </th>
                             <th>Kill</th>
-                            <th></th>
+                            <th>Players</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,9 +47,10 @@
                             <td *ngIf="!player.is_eliminated" [ngClass]="{'d-none':player.is_eliminated}">{{ player.kill
                                 }}</td>
                             <td class="players-count">
-                                <div *ngIf="!player.is_eliminated">
+                                <div class="inner" *ngIf="!player.is_eliminated">
                                     <div class="circle" [ngClass]="{'player-dead':i.is_dead}"
                                         *ngFor="let i of player.alive"></div>
+                                    <br>
                                 </div>
                             </td>
                             <td class="eliminate" *ngIf="player.is_eliminated">ELIMINATED</td>
