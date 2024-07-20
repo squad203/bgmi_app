@@ -25,16 +25,16 @@
                     style="color: rgb(58, 163, 255);">( Where to find in app ? )</a></p>
             <div class="input">
                 <img src="assets/icons/team.svg" alt="">
-                <input [disabled]="loading" required name="name" [(ngModel)]="playerEnrollment" type="text"
+                <input [disabled]="loading" required name="enrollment" [(ngModel)]="playerEnrollment" type="text"
                     placeholder="DFDC0000000000">
             </div>
         </div>
         <div class="inputClass">
-            <p for="fname">Game ID</p>
+            <p for="fname">Game UID</p>
             <div class="input">
                 <img src="assets/icons/pen.svg" alt="">
                 <input [disabled]="loading" required name="gameId" (input)="onInput($event,'gameId')"
-                    [(ngModel)]="playerGameID" type="text" placeholder="@techyBoy" pattern="[^\s]+"
+                    [(ngModel)]="playerGameID" type="number" placeholder="512354986543" pattern="[^\s]+"
                     title="No spaces allowed">
             </div>
         </div>
