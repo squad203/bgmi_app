@@ -136,7 +136,7 @@
                             <td>{{p.mobile}}</td>
                             <td>{{p.kill}}</td>
 
-                            <td style="cursor: pointer;" (clicnk)="verificationClick(p.id)"
+                            <td style="cursor: pointer;" (click)="verificationClick(p.id)"
                                 [ngClass]="{'pending':!p.verified,'approved':p.verified}">
                                 <p>{{p.verified ? "Done" : "Rejected"}}</p>
                             </td>
