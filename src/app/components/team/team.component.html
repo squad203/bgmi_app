@@ -25,6 +25,7 @@
             <tr>
                 <th *ngIf="match" scope="row"><input (click)="appendToList('my team1')" type="checkbox"></th>
                 <th scope="col">#</th>
+                <th scope="col">Logo</th>
                 <th scope="col">Team Name</th>
                 <th scope="col">Tournament</th>
                 <th scope="col">Match</th>
@@ -35,10 +36,13 @@
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <tr (click)="openPopup(e)" *ngFor="let i of teams;let e = index">
+            <tr *ngFor="let i of teams;let e = index">
                 <th *ngIf="match" scope="row"><input (click)="appendToList('my team1')" type="checkbox"></th>
                 <th scope="row">{{e+1}}</th>
-                <td>{{i.teamName}}</td>
+                <th style="cursor: pointer;" scope="row"><img width="20" [src]="logoUrl+i.logo" alt=""
+                        (click)="openinNewTab(logoUrl+i.logo)">
+                </th>
+                <td style="cursor: pointer; text-decoration: underline;" (click)="openPopup(e)">{{i.teamName}}</td>
                 <td>{{i.tournament}}</td>
                 <td>Match name</td>
                 <td>{{i.city}}</td>
@@ -50,7 +54,6 @@
                     <p>{{i.verify ? "Done":"Pending"}}</p>
                 </td>
             </tr>
-
         </tbody>
     </table>
     <div *ngIf="view == 'card'" class="cards">
@@ -133,7 +136,7 @@
                             <td>{{p.mobile}}</td>
                             <td>{{p.kill}}</td>
 
-                            <td style="cursor: pointer;" (click)="verificationClick(p.id)"
+                            <td style="cursor: pointer;" (clicnk)="verificationClick(p.id)"
                                 [ngClass]="{'pending':!p.verified,'approved':p.verified}">
                                 <p>{{p.verified ? "Done" : "Rejected"}}</p>
                             </td>

@@ -7,6 +7,7 @@ import {
   togglePaymentReceived,
   toggleVerification,
   updateKill,
+  logoUrl,
 } from '../../config';
 
 @Component({
@@ -21,6 +22,7 @@ export class TeamComponent {
   teamList: Array<any> = [];
   teams: any[] = [];
   openIndex = -1;
+  logoUrl = logoUrl;
   constructor(
     public activatedRoute: ActivatedRoute,
     private http: HttpClient
@@ -34,6 +36,9 @@ export class TeamComponent {
       console.log(res);
       this.teams = res as any[];
     });
+  }
+  openinNewTab(url: string) {
+    window.open(url, '_blank')?.focus();
   }
   appendToList(team: any) {
     this.teamList.push(team);
