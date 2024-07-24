@@ -2,8 +2,8 @@
     <img class="f-bg" src="assets/bg.png" alt="">
     <section>
         <h1>BGMI Tournament</h1>
-        <h1> Registration</h1>
-        <div class="inputClass">
+        <h1> Registration is closed</h1>
+        <!-- <div class="inputClass">
             <p for="fname">Team Logo</p>
             <div class="input">
                 <img src="assets/icons/upload.svg" alt="">
@@ -37,7 +37,6 @@
         <div class="inputClass">
             <p for="fname">College Name</p>
             <div class="input">
-                <!-- <img src="assets/icons/phone.svg" alt=""> -->
                 <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCollege"
                     name="college" placeholder="My College">
             </div>
@@ -45,7 +44,6 @@
         <div class="inputClass">
             <p for="fname">City Name</p>
             <div class="input">
-                <!-- <img src="assets/icons/phone.svg" alt=""> -->
                 <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCity" name="city"
                     placeholder="Ahemedabad">
             </div>
@@ -56,46 +54,44 @@
             <img src="assets/icons/right_arrow.svg" alt="">
 
         </div>
+
         <div class="players">
+
             <div class="inputClass" (click)="goToPlayers(1)">
-                <!-- <p for="fname"></p> -->
-                <div class="input">
-                    <img src="assets/icons/player.svg" alt="">
-                    <input [disabled]="loadding" type="text" [value]="player1" readonly>
-                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
-                </div>
-            </div>
-            <div class="inputClass" (click)="goToPlayers(2)">
-                <!-- <p for="fname">Team City</p> -->
-                <div class="input">
-                    <img src="assets/icons/player.svg" alt="">
-                    <input [disabled]="loadding" type="text" [value]="player2" readonly>
-                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+        <div class="input">
+            <img src="assets/icons/player.svg" alt="">
+            <input [disabled]="loadding" type="text" [value]="player1" readonly>
+            <img src="assets/icons/pen.svg" alt="" class="r-icon">
+        </div>
+        </div>
+        <div class="inputClass" (click)="goToPlayers(2)">
+        <div class="input">
+            <img src="assets/icons/player.svg" alt="">
+            <input [disabled]="loadding" type="text" [value]="player2" readonly>
+            <img src="assets/icons/pen.svg" alt="" class="r-icon">
 
-                </div>
-            </div>
-            <div class="inputClass" (click)="goToPlayers(3)">
-                <!-- <p for="fname">Team City</p> -->
-                <div class="input">
-                    <img src="assets/icons/player.svg" alt="">
-                    <input [disabled]="loadding" type="text" [value]="player3" readonly>
-                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+        </div>
+        </div>
+        <div class="inputClass" (click)="goToPlayers(3)">
+            <div class="input">
+                <img src="assets/icons/player.svg" alt="">
+                <input [disabled]="loadding" type="text" [value]="player3" readonly>
+                <img src="assets/icons/pen.svg" alt="" class="r-icon">
 
-                </div>
             </div>
-            <div class="inputClass" (click)="goToPlayers(4)">
-                <!-- <p for="fname">Team City</p> -->
-                <div class="input">
-                    <img src="assets/icons/player.svg" alt="">
-                    <input [disabled]="loadding" type="text" [value]="player4" readonly>
-                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
-                </div>
+        </div>
+        <div class="inputClass" (click)="goToPlayers(4)">
+            <div class="input">
+                <img src="assets/icons/player.svg" alt="">
+                <input [disabled]="loadding" type="text" [value]="player4" readonly>
+                <img src="assets/icons/pen.svg" alt="" class="r-icon">
             </div>
+        </div>
         </div>
 
         <button [disabled]="loadding" (click)="submit()">
             <p>{{ loadding ? "Registering..." : "Register"}}</p>
-        </button>
+        </button> -->
 
 
 
