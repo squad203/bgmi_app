@@ -45,7 +45,11 @@ export class MatchComponent {
   }
   navigateToTeam(matchName: string) {
     // Navigate to team component
-    this.router.navigateByUrl('/team?match=' + matchName);
+    this.router.navigateByUrl('/team?match=' + matchName + '&type=add');
+  }
+  navigateToTeamView(matchName: string) {
+    // Navigate to team component
+    this.router.navigateByUrl('/team?match=' + matchName + '&type=view');
   }
   submit() {
     if (

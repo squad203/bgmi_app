@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   getTeamList,
   toggleIsDead,
@@ -8,6 +8,8 @@ import {
   toggleVerification,
   updateKill,
   logoUrl,
+  AddTeamInMatch,
+  GetMatchPlayers,
 } from '../../config';
 
 @Component({
@@ -19,29 +21,44 @@ export class TeamComponent {
   createPopup = false;
   view = 'table';
   match = '';
+  type = 'view';
   teamList: Array<any> = [];
   teams: any[] = [];
   openIndex = -1;
   logoUrl = logoUrl;
   constructor(
     public activatedRoute: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.match = params.match;
+      this.type = params.type;
       console.log(this.match);
-    });
-    this.http.get(getTeamList).subscribe((res) => {
-      console.log(res);
-      this.teams = res as any[];
+      if (this.match && this.type === 'view') {
+        this.http.get(GetMatchPlayers + this.match).subscribe((res) => {
+          console.log(res);
+          this.teams = res as any[];
+          this.view = 'card';
+        });
+      } else {
+        this.http.get(getTeamList).subscribe((res) => {
+          console.log(res);
+          this.teams = res as any[];
+        });
+      }
     });
   }
   openinNewTab(url: string) {
     window.open(url, '_blank')?.focus();
   }
   appendToList(team: any) {
-    this.teamList.push(team);
+    this.http
+      .post(AddTeamInMatch + this.match + '/' + team, '')
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
   removeFromList(team: any) {
     this.teamList = this.teamList.filter((item) => item !== team);
@@ -70,7 +87,6 @@ export class TeamComponent {
         this.refresPage();
       });
   }
-
   paymentClick(team_id: any) {
     this.http
       .put(togglePaymentReceived + '?team_id=' + team_id, {})
@@ -80,9 +96,11 @@ export class TeamComponent {
       });
   }
   refresPage() {
-    this.http.get(getTeamList).subscribe((res) => {
-      console.log(res);
-      this.teams = res as any[];
+    let currentUrl = this.router.url;
+    console.log(currentUrl);
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(currentUrl);
     });
   }
   changeToCard() {

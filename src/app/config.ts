@@ -1,5 +1,5 @@
-// export const url = 'http://localhost:8000/';
-export const url = 'https://api.indianpolice.in/';
+export const url = 'http://localhost:8000/';
+// export const url = 'https://api.indianpolice.in/';
 
 export const registerApi = url + 'bgmi/register';
 export const createTournament = url + 'bgmi/create/tournament';
@@ -13,3 +13,5 @@ export const toggleIsDead = url + 'bgmi/toggleIsDead';
 export const updateKill = url + 'bgmi/updateKill';
 export const verifyEnrollment = url + 'bgmi/verifyEnrollment/';
 export const logoUrl = url + 'bgmi/logo/';
+export const AddTeamInMatch = url + 'bgmi/addTeamInMatch/';
+export const GetMatchPlayers = url + 'bgmi/getMatchPlayers/';
