@@ -96,12 +96,18 @@ export class TeamComponent {
       });
   }
   refresPage() {
-    let currentUrl = this.router.url;
-    console.log(currentUrl);
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigateByUrl(currentUrl);
-    });
+    if (this.match && this.type === 'view') {
+      this.http.get(GetMatchPlayers + this.match).subscribe((res) => {
+        console.log(res);
+        this.teams = res as any[];
+        this.view = 'card';
+      });
+    } else {
+      this.http.get(getTeamList).subscribe((res) => {
+        console.log(res);
+        this.teams = res as any[];
+      });
+    }
   }
   changeToCard() {
     this.view = 'card';
