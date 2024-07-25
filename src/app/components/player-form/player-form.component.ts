@@ -104,7 +104,7 @@ export class PlayerFormComponent {
               JSON.stringify(data)
             );
           }
-          this.router.navigate(['/form/' + this.tournamentId]);
+          this.router.navigate(['/formteam/' + this.tournamentId]);
         } else {
           alert('Enrollment not found');
           this.loading = false;

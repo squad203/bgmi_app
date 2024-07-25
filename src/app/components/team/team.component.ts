@@ -95,6 +95,9 @@ export class TeamComponent {
         this.refresPage();
       });
   }
+  addTeam() {
+    this.router.navigateByUrl('/formteam/7599295a-1c5b-4cf7-8ea1-b069373c09a5');
+  }
   refresPage() {
     if (this.match && this.type === 'view') {
       this.http.get(GetMatchPlayers + this.match).subscribe((res) => {

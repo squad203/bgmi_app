@@ -30,7 +30,7 @@ const routes: Routes = [
     component: MatchComponent,
   },
   {
-    path: 'form/:id',
+    path: 'formteam/:id',
     component: FormComponent,
   },
   {
