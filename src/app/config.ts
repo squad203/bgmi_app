@@ -1,5 +1,5 @@
-export const url = 'http://localhost:8000/';
-// export const url = 'https://api.indianpolice.in/';
+// export const url = 'http://localhost:8000/';
+export const url = 'https://api.indianpolice.in/';
 
 export const registerApi = url + 'bgmi/register';
 export const createTournament = url + 'bgmi/create/tournament';
