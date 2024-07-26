@@ -7,6 +7,7 @@ import { MatchComponent } from './components/match/match.component';
 import { TeamComponent } from './components/team/team.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
+import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'formteam/:id',
     component: FormComponent,
+  },
+  {
+    path: 'scoreboardUpdate/:matchId/:id',
+    component: ScoreboardUpdateComponent,
   },
   {
     path: 'thanks',

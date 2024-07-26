@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GetPlayersScore, GetTeamScore, logoUrl } from '../../config';
 
 @Component({
   selector: 'app-scoreboard',
@@ -6,209 +9,45 @@ import { Component } from '@angular/core';
   styleUrl: './scoreboard.component.scss',
 })
 export class ScoreboardComponent {
-  players = [
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: false,
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: false,
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: true,
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: false,
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: false,
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_dead: false,
-    },
-  ];
-  team = [
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: false,
-      alive: [
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: false,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-    {
-      name: 'Krish',
-      kill: 23,
-      is_eliminated: true,
-      alive: [
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-        {
-          is_dead: true,
-        },
-      ],
-    },
-  ];
+  players: any;
+  team: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient
+  ) {}
+  matchId: any;
+  type: any;
+  logoUrl = logoUrl;
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      console.log(params);
+
+      this.matchId = params.match_id;
+      this.type = params.type;
+      console.log(this.matchId);
+      console.log(this.type);
+
+      if (this.matchId && this.type == 'player') {
+        setInterval(() => {
+          this.http
+            // .get(GetPlayersScore + '?match_id=' + this.matchId)
+            .get(GetPlayersScore + '/?match_id=' + this.matchId)
+            .subscribe((data) => {
+              this.players = data;
+            });
+        }, 1000);
+      }
+
+      if (this.matchId && this.type == 'team') {
+        setInterval(() => {
+          this.http
+            // .get(GetPlayersScore + '?match_id=' + this.matchId)
+            .get(GetTeamScore + '?match_id=' + this.matchId)
+            .subscribe((data) => {
+              this.team = data;
+            });
+        }, 1000);
+      }
+    });
+  }
 }

@@ -13,6 +13,7 @@ import { TeamComponent } from './components/team/team.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ThanksComponent } from './thanks/thanks.component';
+import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ThanksComponent } from './thanks/thanks.component';
     TeamComponent,
     ScoreboardComponent,
     ThanksComponent,
+    ScoreboardUpdateComponent,
   ],
   imports: [
     BrowserModule,

@@ -37,6 +37,7 @@
                 <th scope="col">Kills</th>
                 <th scope="col" class="text-center">Payment</th>
                 <th scope="col" class="text-center">Verification</th>
+                <th scope="col" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -58,6 +59,7 @@
                 <td [ngClass]="{'pending':!i.verify,'approved':i.verify}">
                     <p>{{i.verify ? "Done":"Pending"}}</p>
                 </td>
+                <td style="cursor: pointer; text-decoration: underline;" (click)="copy(i.id)">CopyId</td>
             </tr>
         </tbody>
     </table>

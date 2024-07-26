@@ -27,6 +27,22 @@ export class MatchComponent {
       this.matchs = res as any[];
     });
   }
+  goToscoreboard(id: string) {
+    this.router.navigateByUrl('/scoreboard?match_id=' + id + '&type=player');
+  }
+  copy(id: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = id;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
   changeToCard() {
     this.view = 'card';
   }

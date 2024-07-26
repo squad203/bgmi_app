@@ -15,3 +15,6 @@ export const verifyEnrollment = url + 'bgmi/verifyEnrollment/';
 export const logoUrl = url + 'bgmi/logo/';
 export const AddTeamInMatch = url + 'bgmi/addTeamInMatch/';
 export const GetMatchPlayers = url + 'bgmi/getMatchPlayers/';
+export const GetTeamsByMatch = url + 'bgmi/getTeams/';
+export const GetPlayersScore = url + 'bgmi/getPlayers';
+export const GetTeamScore = url + 'bgmi/getTeamsRanking';
