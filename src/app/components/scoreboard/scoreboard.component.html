@@ -43,7 +43,10 @@
                         <tr class="tr-team" [ngClass]="{'dead':player.is_eliminated}"
                             *ngFor="let player of team; let i = index">
                             <td>#{{ i + 1 }}</td>
-                            <td class="team"><img width="20" [src]="logoUrl+player.logo" alt="">{{ player.teamName }}
+                            <td class="team"><img width="40"
+                                    [src]="'assets/team/'+player.rank+'.png' || 'assets/team/'+player.rank+'.jpg'"
+                                    alt="">&nbsp;&nbsp;&nbsp;{{
+                                player.teamName }}
                             </td>
                             <td *ngIf="!player.is_eliminated" [ngClass]="{'d-none':player.is_eliminated}">{{ player.kill
                                 }}</td>
