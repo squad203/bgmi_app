@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { createMatch, getMatchList, getTournamentList } from '../../config';
+import {
+  createMatch,
+  getMatchList,
+  GetTeamScore,
+  getTournamentList,
+} from '../../config';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 
 @Component({
@@ -19,7 +24,9 @@ export class MatchComponent {
   mode: string = '';
   date: string = '';
   loading: boolean = false;
+  teamPopup: boolean = false;
   matchs: any[] = [];
+  Links: any[] = [];
   constructor(private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
     this.http.get(getMatchList).subscribe((res) => {
@@ -56,8 +63,68 @@ export class MatchComponent {
     });
     this.createPopup = true;
   }
+  teamId: any[] = [];
+  teamsList: any;
+  selectedMatch: any;
+  openTeamPopup(id: string) {
+    this.selectedMatch = id;
+    this.http
+      .get(GetTeamScore + '?match_id=' + this.selectedMatch)
+      .subscribe((res) => {
+        console.log(res);
+        this.teamsList = res as any[];
+        this.teamPopup = true;
+      });
+  }
+  appendToList(id: string) {
+    if (this.teamId.includes(id)) {
+      let count = this.teamId.indexOf(id);
+      this.teamId.splice(count, 1);
+      console.log(this.teamId);
+      return;
+    }
+    this.teamId.push(id);
+  }
+  generateUrl() {
+    let url = `https://bgmiform.netlify.app/#/scoreboardUpdate/${
+      this.selectedMatch
+    }/${this.teamId.join(',')}`;
+    this.copy(url);
+    this.Links = [url];
+  }
+  chunkArray(array: any[], chunkSize: number) {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize));
+      console.log(i + chunkSize);
+    }
+    return chunks;
+  }
+  generateMultipleUrl(event: any) {
+    let number = event.target.value;
+    console.log(number);
+    let ids = [];
+    for (let i = 0; i < this.teamsList.length; i++) {
+      const element = this.teamsList[i];
+      ids.push(element.team_id);
+    }
+    var arrayList = this.chunkArray(ids, parseInt(number));
+    console.log(arrayList);
+
+    for (let i = 0; i < arrayList.length; i++) {
+      const element = arrayList[i];
+      this.Links.push(
+        `https://bgmiform.netlify.app/#/scoreboardUpdate/${
+          this.selectedMatch
+        }/${element.join(',')}`
+      );
+    }
+  }
   closePopup() {
     this.createPopup = false;
+  }
+  closeTeamPopup() {
+    this.teamPopup = false;
   }
   navigateToTeam(matchName: string) {
     // Navigate to team component

@@ -2,11 +2,11 @@
   background-color: #52ff00;
   color: black;
   height: 100vh;
-  width: 340px;
+  width: 450px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   .scoreboard__content {
     width: 100%;
     .scoreboard__content__table {
@@ -16,6 +16,11 @@
         width: 100%;
         border-collapse: collapse;
         border-bottom: 1px solid black;
+        thead {
+          position: sticky;
+          width: 100%;
+          top: 0;
+        }
         th {
           border-bottom: 1px solid #d7c7a4;
           padding: 10px;
@@ -31,6 +36,7 @@
           td {
             text-align: center;
             padding: 5px;
+            white-space: nowrap;
           }
           .team {
             background-color: #ffffff;

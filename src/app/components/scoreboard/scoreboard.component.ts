@@ -17,6 +17,7 @@ export class ScoreboardComponent {
   ) {}
   matchId: any;
   type: any;
+  mainTeam: any[] = [];
   logoUrl = logoUrl;
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: any) => {

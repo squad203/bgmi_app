@@ -51,7 +51,7 @@
                     [ngClass]="{'pending':i.match_status == 'pending','approved':i.match_status == 'completed','reject':i.match_status == 'canceled'}">
                     <p>{{i.match_status}}</p>
                 </td>
-                <td style="text-decoration: underline; cursor: pointer;" (click)="copy(i.id)">Copy MatchId</td>
+                <td style="text-decoration: underline; cursor: pointer;" (click)="openTeamPopup(i.id)">Copy MatchId</td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="goToscoreboard(i.id)">Scoreboard</td>
 
             </tr>
@@ -185,6 +185,47 @@
                         ?"Creating..." : "Submit"}}</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="teamPopup" class="popup">
+    <div class="card">
+        <div class="popup-title">
+            <h4>Generate Links</h4>
+            <svg (click)="closeTeamPopup()" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path
+                    d="M4.354 4.354a.5.5 0 0 1 .708 0L8 7.293l3.938-3.939a.5.5 0 0 1 .708.708L8.707 8l3.939 3.938a.5.5 0 0 1-.708.708L8 8.707l-3.938 3.939a.5.5 0 0 1-.708-.708L7.293 8 3.354 4.062a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </div>
+        <div class="content">
+            <button class="btn btn-primary" (click)="generateUrl()">GetLink</button>
+            <input *ngIf="teamsList" type="number" class="inputClass" name="input"
+                (input)="generateMultipleUrl($event)">
+            <table class="table  table-striped">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="row"></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Team Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let i of teamsList;let e = index">
+                        <th scope="row"><input (click)="appendToList(i.team_id)" [checked]="teamId.includes(i.team_id)"
+                                type="checkbox"></th>
+                        <th scope="row">{{e+1}}</th>
+                        <td>
+                            {{i.teamName}}
+                        </td>
+                        <td>CopyId</td>
+                        <td style="cursor: pointer; text-decoration: underline;" (click)="copy(i.id)">CopyId</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngFor="let l of Links">{{l}}</p>
+
         </div>
     </div>
 </div>
