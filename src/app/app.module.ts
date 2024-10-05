@@ -14,6 +14,7 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
+import { TeamPageComponent } from './components/team-page/team-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreb
     ScoreboardComponent,
     ThanksComponent,
     ScoreboardUpdateComponent,
+    TeamPageComponent,
   ],
   imports: [
     BrowserModule,

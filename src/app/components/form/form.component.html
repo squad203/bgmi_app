@@ -1,8 +1,8 @@
-<main *ngIf="tournamentId">
-    <img class="f-bg" src="assets/bg.png" alt="">
+<main>
+    <img class="f-bg" src="assets/ff_bg.jpg" alt="">
     <section>
-        <h1>BGMI Tournament</h1>
-        <h1> Registration</h1>
+        <h1>FF Tournament</h1>
+        <h1>Registrar your team</h1>
         <div class="inputClass">
             <p for="fname">Team Logo</p>
             <div class="input">
@@ -23,7 +23,7 @@
             <div class="input">
                 <img src="assets/icons/email.svg" alt="">
                 <input [disabled]="loadding" [disabled]="loadding" (input)="onInput($event)" [(ngModel)]="teamEmail"
-                    name="email" type="text" placeholder="bgmi@gmail.com">
+                    name="email" type="text" placeholder="ff@gmail.com">
             </div>
         </div>
         <div class="inputClass">
@@ -37,22 +37,43 @@
         <div class="inputClass">
             <p for="fname">College Name</p>
             <div class="input">
-                <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCollege"
+                <select [disabled]="loadding" (change)="onInput($event)" type="text" [(ngModel)]="teamCollege"
                     name="college" placeholder="My College">
+                    <option value="Bhagwan Mahavir University">Bhagwan Mahavir University</option>
+                    <option value="Institute of Quality Education">Institute of Quality Education</option>
+                    <option value="Kalyan Polytechnic">Kalyan Polytechnic</option>
+                    <option value="Noble University">Noble University</option>
+                    <option value="RK University">RK University</option>
+                    <option value="Shanti Business School (SBS)">Shanti Business School (SBS)</option>
+                    <option value="Shri Parekh College">Shri Parekh College</option>
+                    <option value="Sigma University">Sigma University</option>
+                    <option value="Silver Oak University">Silver Oak University</option>
+                    <option value="Skybright Education">Skybright Education</option>
+                </select>
+
             </div>
         </div>
         <div class="inputClass">
             <p for="fname">City Name</p>
             <div class="input">
-                <input [disabled]="loadding" (input)="onInput($event)" type="text" [(ngModel)]="teamCity" name="city"
-                    placeholder="Ahemedabad">
+                <!-- <select name="city" id="city" [disabled]="loadding" (change)="onInput($event)" [(ngModel)]="teamCity">
+                    <option value="Rajkot">Rajkot</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Jamnagar">Jamnagar</option>
+                    <option value="Mahuva">Mahuva</option>
+                    <option value="Junagadh">Junagadh</option>
+                    <option value="Keshod">Keshod</option>
+                    <option value="Vadodara">Vadodara</option>
+                </select> -->
+                <input [disabled]="loadding" readonly (input)="onInput($event)" type="text" [(ngModel)]="teamCity"
+                    name="city" placeholder=".....">
             </div>
         </div>
-        <div class="p-title">
+        <!-- <div class="p-title">
             <img class="first-arrow" src="assets/icons/right_arrow.svg" alt="">
             <p>Players&nbsp;Name</p>
             <img src="assets/icons/right_arrow.svg" alt="">
-
         </div>
 
         <div class="players">
@@ -87,10 +108,10 @@
                     <img src="assets/icons/pen.svg" alt="" class="r-icon">
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <button [disabled]="loadding" (click)="submit()">
-            <p>{{ loadding ? "Registering..." : "Register"}}</p>
+            <p>{{ loadding ? "Registering..." : "Register Team"}}</p>
         </button>
 
 
@@ -99,4 +120,4 @@
 
 </main>
 
-<h1 *ngIf="!tournamentId">Invalid Tournament</h1>
+<!-- <h1 *ngIf="!tournamentId">Invalid Tournament</h1> -->

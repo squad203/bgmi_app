@@ -8,6 +8,7 @@ import { TeamComponent } from './components/team/team.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
+import { TeamPageComponent } from './components/team-page/team-page.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
     component: MatchComponent,
   },
   {
-    path: 'formteam/:id',
+    path: 'formteam',
     component: FormComponent,
   },
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'scoreboard',
     component: ScoreboardComponent,
+  },
+  {
+    path: 'team_page/:team_code',
+    component: TeamPageComponent,
   },
 ];
 

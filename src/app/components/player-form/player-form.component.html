@@ -1,7 +1,7 @@
 <main>
-    <img class="f-bg" src="assets/bg.png" alt="">
+    <img class="f-bg" src="assets/ff_bg.jpg" alt="">
     <form (submit)="goToPlayers()">
-        <h1>BGMI Tournament</h1>
+        <h1>FF Tournament</h1>
         <h1> Registration</h1>
 
 
@@ -12,21 +12,21 @@
 
         </div>
         <div class="inputClass">
-            <p for="fname">Name</p>
-            <div class="input">
-                <img src="assets/icons/team.svg" alt="">
-                <input [disabled]="loading" required name="name" [(ngModel)]="playerName" type="text"
-                    placeholder="Your Name">
-            </div>
-        </div>
-        <div class="inputClass">
             <p for="fname">Drona's Enrollment number <a
                     href="https://drive.google.com/file/d/1DVYzvoa5uot6ZaRNupUJCWVJ_D7D3VEx/view" target="_blank"
                     style="color: rgb(58, 163, 255);">( Where to find in app ? )</a></p>
             <div class="input">
                 <img src="assets/icons/team.svg" alt="">
-                <input [disabled]="loading" required name="enrollment" [(ngModel)]="playerEnrollment" type="text"
-                    placeholder="DFDC0000000000">
+                <input (change)="checkEnrollment()" [disabled]="loading" required name="enrollment"
+                    [(ngModel)]="playerEnrollment" type="text" placeholder="DFDC0000000000">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Name</p>
+            <div class="input">
+                <img src="assets/icons/team.svg" alt="">
+                <input readonly [disabled]="loading" required name="name" [(ngModel)]="playerName" type="text"
+                    placeholder="Your Name">
             </div>
         </div>
         <div class="inputClass">
@@ -36,6 +36,14 @@
                 <input [disabled]="loading" required name="gameId" (input)="onInput($event,'gameId')"
                     [(ngModel)]="playerGameID" type="number" placeholder="512354986543" pattern="[^\s]+"
                     title="No spaces allowed">
+            </div>
+        </div>
+        <div class="inputClass">
+            <p for="fname">Game User Name</p>
+            <div class="input">
+                <img src="assets/icons/pen.svg" alt="">
+                <input [disabled]="loading" required name="playerGameName" [(ngModel)]="playerGameName" type="text"
+                    placeholder="krish_1401" pattern="[^\s]+" title="No spaces allowed">
             </div>
         </div>
         <div class="inputClass">
@@ -58,10 +66,13 @@
 
         <p *ngIf="errMsg" style="color: rgb(255, 91, 91);">{{errMsg}}</p>
 
-        <button [disabled]="loading" (click)="goToPlayers()">
-            <p>{{loading ? "Verifing... " : "Add Player"}}</p>
+        <button [disabled]="loading" *ngIf="!player_id" (click)="goToPlayers()">
+            <p>{{loading ? "Verifying... " : "Add Player"}}</p>
+        </button>
+        <button [disabled]="loading" *ngIf="player_id" (click)="updatePlayer()">
+            <p>{{loading ? "Verifying... " : "Update Player"}}</p>
         </button>
     </form>
 
-
+    
 </main>

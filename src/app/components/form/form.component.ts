@@ -27,9 +27,9 @@ export class FormComponent {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: any) => {
-      this.tournamentId = params.id;
-    });
+    // this.activatedRoute.params.subscribe((params: any) => {
+    //   this.tournamentId = params.id;
+    // });
     let one = localStorage.getItem('1');
     let two = localStorage.getItem('2');
     let three = localStorage.getItem('3');
@@ -69,6 +69,27 @@ export class FormComponent {
         event.target.value = event.target.value.slice(0, 10);
         this.teamPhone = event.target.value;
       }
+    }
+    if (this.teamCollege == 'Bhagwan Mahavir University') {
+      this.teamCity = 'Surat';
+    } else if (this.teamCollege == 'Institute of Quality Education') {
+      this.teamCity = 'Rajkot';
+    } else if (this.teamCollege == 'Kalyan Polytechnic') {
+      this.teamCity = 'Jamnagar';
+    } else if (this.teamCollege == 'Noble University') {
+      this.teamCity = 'Junagadh';
+    } else if (this.teamCollege == 'RK University') {
+      this.teamCity = 'Rajkot';
+    } else if (this.teamCollege == 'Shanti Business School (SBS)') {
+      this.teamCity = 'Ahmedabad';
+    } else if (this.teamCollege == 'Shri Parekh College') {
+      this.teamCity = 'Mahuva';
+    } else if (this.teamCollege == 'Sigma University') {
+      this.teamCity = 'Vadodara';
+    } else if (this.teamCollege == 'Silver Oak University') {
+      this.teamCity = 'Ahmedabad';
+    } else if (this.teamCollege == 'Skybright Education') {
+      this.teamCity = 'Keshod';
     }
     localStorage.setItem(
       'data',
@@ -145,67 +166,67 @@ export class FormComponent {
       alert('Please enter a valid email');
       return;
     }
-    let player1 = localStorage.getItem('1');
-    let player2 = localStorage.getItem('2');
-    let player3 = localStorage.getItem('3');
-    let player4 = localStorage.getItem('4');
+    // let player1 = localStorage.getItem('1');
+    // let player2 = localStorage.getItem('2');
+    // let player3 = localStorage.getItem('3');
+    // let player4 = localStorage.getItem('4');
 
-    if (!player1 || !player2 || !player3 || !player4) {
-      alert('Please fill out all player information');
-      return;
-    }
-    if (this.teamPhone.toString().length != 10) {
-      alert('Phone number should be 10 digit');
-      return;
-    }
-    if (
-      JSON.parse(player1).enrollNo == JSON.parse(player2).enrollNo ||
-      JSON.parse(player1).enrollNo == JSON.parse(player3).enrollNo ||
-      JSON.parse(player1).enrollNo == JSON.parse(player4).enrollNo ||
-      JSON.parse(player2).enrollNo == JSON.parse(player1).enrollNo ||
-      JSON.parse(player2).enrollNo == JSON.parse(player3).enrollNo ||
-      JSON.parse(player2).enrollNo == JSON.parse(player4).enrollNo ||
-      JSON.parse(player3).enrollNo == JSON.parse(player1).enrollNo ||
-      JSON.parse(player3).enrollNo == JSON.parse(player2).enrollNo ||
-      JSON.parse(player3).enrollNo == JSON.parse(player4).enrollNo ||
-      JSON.parse(player4).enrollNo == JSON.parse(player1).enrollNo ||
-      JSON.parse(player4).enrollNo == JSON.parse(player2).enrollNo ||
-      JSON.parse(player4).enrollNo == JSON.parse(player3).enrollNo ||
-      JSON.parse(player1).enrollNo == '' ||
-      JSON.parse(player2).enrollNo == '' ||
-      JSON.parse(player3).enrollNo == '' ||
-      JSON.parse(player4).enrollNo == ''
-    ) {
-      alert('Duplicate Enrollment number Found');
-      return;
-    }
-    player1 = JSON.parse(player1);
-    player2 = JSON.parse(player2);
-    player3 = JSON.parse(player3);
-    player4 = JSON.parse(player4);
+    // if (!player1 || !player2 || !player3 || !player4) {
+    //   alert('Please fill out all player information');
+    //   return;
+    // }
+    // if (this.teamPhone.toString().length != 10) {
+    //   alert('Phone number should be 10 digit');
+    //   return;
+    // }
+    // if (
+    //   JSON.parse(player1).enrollNo == JSON.parse(player2).enrollNo ||
+    //   JSON.parse(player1).enrollNo == JSON.parse(player3).enrollNo ||
+    //   JSON.parse(player1).enrollNo == JSON.parse(player4).enrollNo ||
+    //   JSON.parse(player2).enrollNo == JSON.parse(player1).enrollNo ||
+    //   JSON.parse(player2).enrollNo == JSON.parse(player3).enrollNo ||
+    //   JSON.parse(player2).enrollNo == JSON.parse(player4).enrollNo ||
+    //   JSON.parse(player3).enrollNo == JSON.parse(player1).enrollNo ||
+    //   JSON.parse(player3).enrollNo == JSON.parse(player2).enrollNo ||
+    //   JSON.parse(player3).enrollNo == JSON.parse(player4).enrollNo ||
+    //   JSON.parse(player4).enrollNo == JSON.parse(player1).enrollNo ||
+    //   JSON.parse(player4).enrollNo == JSON.parse(player2).enrollNo ||
+    //   JSON.parse(player4).enrollNo == JSON.parse(player3).enrollNo ||
+    //   JSON.parse(player1).enrollNo == '' ||
+    //   JSON.parse(player2).enrollNo == '' ||
+    //   JSON.parse(player3).enrollNo == '' ||
+    //   JSON.parse(player4).enrollNo == ''
+    // ) {
+    //   alert('Duplicate Enrollment number Found');
+    //   return;
+    // }
+    // player1 = JSON.parse(player1);
+    // player2 = JSON.parse(player2);
+    // player3 = JSON.parse(player3);
+    // player4 = JSON.parse(player4);
 
-    let player = [player1, player2, player3, player4];
+    // let player = [player1, player2, player3, player4];
     var data = new FormData();
-    data.append('tournament_id', this.tournamentId || '');
-    data.append('teamName', this.teamName);
+    // data.append('tournament_id', this.tournamentId || '');
+    data.append('team_name', this.teamName);
     data.append('email', this.teamEmail);
     data.append('mobile', this.teamPhone);
     data.append('city', this.teamCity);
     data.append('college', this.teamCollege);
-    data.append('players', JSON.stringify(player));
+    // data.append('players', JSON.stringify(player));
     data.append('logo', this.selectedFile || '');
     this.loadding = true;
     this.http.post(registerApi, data).subscribe(
-      (data) => {
+      (data: any) => {
         console.log(data);
         this.loadding = false;
         localStorage.clear();
-        this.router.navigateByUrl('/thanks');
+        this.router.navigateByUrl('/team_page/' + data.teamCode);
       },
       (err) => {
         console.log(err);
         this.loadding = false;
-        alert('Some data is incorrect');
+        alert(err.error.detail);
       }
     );
   }

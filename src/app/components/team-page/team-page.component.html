@@ -1,0 +1,58 @@
+<main>
+    <img class="f-bg" src="assets/ff_bg.jpg" alt="">
+    <div class="container">
+
+        <h1>{{team_data.teamName}} - {{team_data.teamCode}}</h1>
+
+        <p style="text-align: center;"><b style="color: cyan;">Note : Do not share this link with anyone. Copy This if
+                you
+                have to fill details latter
+            </b></p>
+        <div class="p-title">
+
+            <img class="first-arrow" src="assets/icons/right_arrow.svg" alt="">
+            <p>Players&nbsp;Name</p>
+            <img src="assets/icons/right_arrow.svg" alt="">
+        </div>
+
+        <div class="players">
+
+            <div class="inputClass" *ngFor="let player of team_data.players" (click)="goToPlayerWithId(player.id)">
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loading" value="{{player.player_name}}" type="text" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+                </div>
+            </div>
+            <div class="inputClass" *ngFor="let player of default_list" (click)="goToPlayer()">
+                <div class="input">
+                    <img src="assets/icons/player.svg" alt="">
+                    <input [disabled]="loading" type="text" value="Click To Register Players" readonly>
+                    <img src="assets/icons/pen.svg" alt="" class="r-icon">
+                </div>
+            </div>
+            <!-- <div class="inputClass">
+            <div class="input">
+                <img src="assets/icons/player.svg" alt="">
+                <input [disabled]="loading" type="text" readonly>
+                <img src="assets/icons/pen.svg" alt="" class="r-icon">
+
+            </div>
+        </div>
+        <div class="inputClass">
+            <div class="input">
+                <img src="assets/icons/player.svg" alt="">
+                <input [disabled]="loading" type="text" readonly>
+                <img src="assets/icons/pen.svg" alt="" class="r-icon">
+            </div>
+        </div> -->
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+
+            <button *ngIf="!team_data.submitted" [disabled]="loading" (click)="submitTeam()">
+                <p>{{loading ? "Verifying... " : "Final Submission"}}</p>
+            </button>
+        </div>
+    </div>
+
+</main>

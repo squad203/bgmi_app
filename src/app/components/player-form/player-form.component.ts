@@ -2,7 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { verifyEnrollment } from '../../config';
+import {
+  get_player,
+  register_player,
+  update_player,
+  verify_enrollment,
+  verifyEnrollment,
+} from '../../config';
 
 @Component({
   selector: 'app-player-form',
@@ -14,31 +20,40 @@ export class PlayerFormComponent {
   playerName: string = '';
   playerNumber: number | undefined;
   playerGameID: string = '';
+  playerGameName: string = '';
   playerHomeTown: string = '';
   playerEmail: string = '';
   playerEnrollment: string = '';
   errMsg: string | undefined;
-  tournamentId: string | undefined;
+  // tournamentId: string | undefined;
+  teamCode: string | undefined;
+  player_id: string | undefined;
   loading = false;
+  playerCount: any;
+  name_loading: boolean = false;
+
   constructor(
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private http: HttpClient
   ) {}
-  playerCount: number = 0;
+  // playerCount: number = 0;
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log(params);
-      this.playerCount = params.player;
-      this.tournamentId = params.tournamentId;
-      let data = localStorage.getItem(this.playerCount.toString());
-      if (data) {
-        this.playerName = JSON.parse(data).player_name;
-        this.playerNumber = JSON.parse(data).mobile;
-        this.playerGameID = JSON.parse(data).game_id;
-        this.playerEnrollment = JSON.parse(data).enrollNo;
-        this.playerHomeTown = JSON.parse(data).city;
-        this.playerEmail = JSON.parse(data).email;
+      // this.playerCount = params.player;
+      // this.tournamentId = params.tournamentId;
+      this.teamCode = params.teamCode;
+      this.player_id = params.player_id;
+      if (this.player_id) {
+        this.http.get(get_player + this.player_id).subscribe((data: any) => {
+          this.playerName = data.player_name;
+          this.playerNumber = data.mobile;
+          this.playerGameID = data.game_info[0].game_id;
+          this.playerGameName = data.game_info[0].game_name;
+          this.playerEmail = data.email;
+          this.playerEnrollment = data.enrollment_no;
+        });
       }
     });
   }
@@ -54,7 +69,20 @@ export class PlayerFormComponent {
       this.playerGameID = event.target.value;
     }
   }
-  async checkEnrollment() {}
+  checkEnrollment() {
+    this.playerName = 'Loading....';
+    this.http
+      .get(verify_enrollment + this.playerEnrollment)
+      .subscribe((data: any) => {
+        if (data.find == false) {
+          alert('Enrollment not found');
+
+          return;
+        } else {
+          this.playerName = data.name;
+        }
+      });
+  }
 
   goToPlayers() {
     if (this.playerNumber?.toString().length != 10) {
@@ -83,39 +111,81 @@ export class PlayerFormComponent {
       return;
     }
     this.loading = true;
-    this.http.get(verifyEnrollment + this.playerEnrollment).subscribe(
-      (data: any) => {
-        if (data) {
+
+    this.http
+      .post(register_player, {
+        team_code: this.teamCode,
+        enrollNo: this.playerEnrollment,
+        player_name: this.playerName,
+        mobile: this.playerNumber.toString(),
+        email: this.playerEmail,
+        gameInfo: {
+          game_id: this.playerGameID,
+          game_name: this.playerGameName,
+        },
+      })
+      .subscribe(
+        (data) => {
           this.loading = false;
-          let data = {
-            player_name: this.playerName,
-            game_id: this.playerGameID,
-            captain: this.playerCount == 1 ? true : false,
-            mobile: this.playerNumber,
-            email: this.playerEmail,
-            enrollNo: this.playerEnrollment,
-            age: 0,
-            city: '',
-            college: '',
-          };
-          if (this.playerCount != 0) {
-            localStorage.setItem(
-              this.playerCount.toString(),
-              JSON.stringify(data)
-            );
-          }
-          this.router.navigate(['/formteam/' + this.tournamentId]);
-        } else {
-          alert('Enrollment not found');
+          this.router.navigate(['/team_page/' + this.teamCode]);
+        },
+        (err) => {
           this.loading = false;
-          return;
+          console.log(err);
+          alert(err.error.detail);
         }
-      },
-      (err) => {
-        alert('Enrollment not found');
-        this.loading = false;
-        return;
-      }
-    );
+      );
+  }
+  updatePlayer() {
+    if (this.playerNumber?.toString().length != 10) {
+      this.errMsg = 'Please enter a valid phone number';
+      return;
+    }
+
+    // #verify all field are filled
+    if (
+      this.playerName == '' ||
+      this.playerNumber == undefined ||
+      this.playerGameID == '' ||
+      this.playerEmail == '' ||
+      this.playerEnrollment == ''
+    ) {
+      console.log(this.playerEnrollment);
+
+      this.errMsg = 'Please fill all the fields';
+      return;
+    }
+    let email = this.playerEmail;
+    let at = email.indexOf('@');
+    let dot = email.lastIndexOf('.');
+    if (at < 1 || dot < at + 2 || dot + 2 >= email.length) {
+      this.errMsg = 'Please enter a valid email';
+      return;
+    }
+    this.loading = true;
+
+    this.http
+      .put(update_player + this.player_id, {
+        team_code: this.teamCode,
+        enrollNo: this.playerEnrollment,
+        player_name: this.playerName,
+        mobile: this.playerNumber.toString(),
+        email: this.playerEmail,
+        gameInfo: {
+          game_id: this.playerGameID,
+          game_name: this.playerGameName,
+        },
+      })
+      .subscribe(
+        (data) => {
+          this.loading = false;
+          this.router.navigate(['/team_page/' + this.teamCode]);
+        },
+        (err) => {
+          this.loading = false;
+          console.log(err);
+          alert(err.error.detail);
+        }
+      );
   }
 }
