@@ -10,6 +10,9 @@ import {
   logoUrl,
   AddTeamInMatch,
   GetMatchPlayers,
+  get_teams,
+  get_team_by_code,
+  toggleVerification_player,
 } from '../../config';
 
 @Component({
@@ -26,6 +29,7 @@ export class TeamComponent {
   teams: any[] = [];
   openIndex = -1;
   logoUrl = logoUrl;
+  players: any[] = [];
   constructor(
     public activatedRoute: ActivatedRoute,
     private http: HttpClient,
@@ -36,14 +40,14 @@ export class TeamComponent {
       this.match = params.match;
       this.type = params.type;
       console.log(this.match);
-      if (this.match && this.type === 'view') {
-        this.http.get(GetMatchPlayers + this.match).subscribe((res) => {
+      if (this.type === 'view') {
+        this.http.get(get_teams).subscribe((res) => {
           console.log(res);
           this.teams = res as any[];
           this.view = 'card';
         });
       } else {
-        this.http.get(getTeamList).subscribe((res) => {
+        this.http.get(get_teams).subscribe((res) => {
           console.log(res);
           this.teams = res as any[];
         });
@@ -78,10 +82,10 @@ export class TeamComponent {
   }
   verificationClick(player_id: any) {
     this.http
-      .put(toggleVerification + '?player_id=' + player_id, {})
+      .get(toggleVerification_player + player_id, {})
       .subscribe((res) => {
         console.log(res);
-        this.refresPage();
+        this.refreshPage();
       });
   }
   deadClick(player_id: any) {
@@ -89,7 +93,7 @@ export class TeamComponent {
       .put(toggleIsDead + '?player_id=' + player_id, {})
       .subscribe((res) => {
         console.log(res);
-        this.refresPage();
+        this.refreshPage();
       });
   }
   updateClick(player_id: any, type: any) {
@@ -97,7 +101,7 @@ export class TeamComponent {
       .put(updateKill + '?player_id=' + player_id + '&type=' + type, {})
       .subscribe((res) => {
         console.log(res);
-        this.refresPage();
+        this.refreshPage();
       });
   }
   paymentClick(team_id: any) {
@@ -105,21 +109,21 @@ export class TeamComponent {
       .put(togglePaymentReceived + '?team_id=' + team_id, {})
       .subscribe((res) => {
         console.log(res);
-        this.refresPage();
+        this.refreshPage();
       });
   }
   addTeam() {
-    this.router.navigateByUrl('/formteam/7599295a-1c5b-4cf7-8ea1-b069373c09a5');
+    this.router.navigateByUrl('/formteam');
   }
-  refresPage() {
-    if (this.match && this.type === 'view') {
-      this.http.get(GetMatchPlayers + this.match).subscribe((res) => {
+  refreshPage() {
+    if (this.type === 'view') {
+      this.http.get(get_teams).subscribe((res) => {
         console.log(res);
         this.teams = res as any[];
         this.view = 'card';
       });
     } else {
-      this.http.get(getTeamList).subscribe((res) => {
+      this.http.get(get_teams).subscribe((res) => {
         console.log(res);
         this.teams = res as any[];
       });
@@ -131,10 +135,21 @@ export class TeamComponent {
   changeToTable() {
     this.view = 'table';
   }
-  openPopup(index: number) {
+  openPopup(code: string, index: number) {
     if (this.match) {
       return;
     }
+
+    this.http.get(get_team_by_code + code).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.players = res.players;
+      },
+      (err) => {
+        console.log(err);
+        alert(err.error.detail);
+      }
+    );
     this.openIndex = index;
     console.log(index);
 
