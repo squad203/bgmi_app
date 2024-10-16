@@ -130,7 +130,7 @@ export class TeamComponent {
     }
   }
   changeToCard() {
-    this.view = 'card';
+    this.view = 'card'; 
   }
   changeToTable() {
     this.view = 'table';

@@ -9,7 +9,8 @@
 section {
   position: relative;
   padding: 20px;
-  top: 100px;
+  // top: 100px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

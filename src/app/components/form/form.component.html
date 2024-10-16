@@ -1,6 +1,11 @@
 <main>
     <img class="f-bg" src="assets/ff_bg.jpg" alt="">
     <section>
+
+        <h1>FF Tournament</h1>
+        <h1>Registration Closed</h1>
+    </section>
+    <!-- <section>
         <h1>FF Tournament</h1>
         <h1>Registrar your team</h1>
         <div class="inputClass">
@@ -56,21 +61,12 @@
         <div class="inputClass">
             <p for="fname">City Name</p>
             <div class="input">
-                <!-- <select name="city" id="city" [disabled]="loadding" (change)="onInput($event)" [(ngModel)]="teamCity">
-                    <option value="Rajkot">Rajkot</option>
-                    <option value="Ahmedabad">Ahmedabad</option>
-                    <option value="Surat">Surat</option>
-                    <option value="Jamnagar">Jamnagar</option>
-                    <option value="Mahuva">Mahuva</option>
-                    <option value="Junagadh">Junagadh</option>
-                    <option value="Keshod">Keshod</option>
-                    <option value="Vadodara">Vadodara</option>
-                </select> -->
+                
                 <input [disabled]="loadding" readonly (input)="onInput($event)" type="text" [(ngModel)]="teamCity"
                     name="city" placeholder=".....">
             </div>
         </div>
-        <!-- <div class="p-title">
+        <div class="p-title">
             <img class="first-arrow" src="assets/icons/right_arrow.svg" alt="">
             <p>Players&nbsp;Name</p>
             <img src="assets/icons/right_arrow.svg" alt="">
@@ -108,7 +104,7 @@
                     <img src="assets/icons/pen.svg" alt="" class="r-icon">
                 </div>
             </div>
-        </div> -->
+        </div> 
 
         <button [disabled]="loadding" (click)="submit()">
             <p>{{ loadding ? "Registering..." : "Register Team"}}</p>
@@ -116,7 +112,7 @@
 
 
 
-    </section>
+    </section> -->
 
 </main>
 
