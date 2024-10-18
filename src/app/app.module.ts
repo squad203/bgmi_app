@@ -15,6 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 import { TeamPageComponent } from './components/team-page/team-page.component';
+import { FinalPtsComponent } from './components/final-pts/final-pts.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TeamPageComponent } from './components/team-page/team-page.component';
     ThanksComponent,
     ScoreboardUpdateComponent,
     TeamPageComponent,
+    FinalPtsComponent,
   ],
   imports: [
     BrowserModule,

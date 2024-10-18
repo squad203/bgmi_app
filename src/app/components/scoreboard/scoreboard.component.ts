@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GetPlayersScore, GetTeamScore, logoUrl } from '../../config';
+import {
+  GetPlayersScore,
+  GetTeamScore,
+  GetTeamScoreNew,
+  logoUrl,
+} from '../../config';
 
 @Component({
   selector: 'app-scoreboard',
@@ -43,7 +48,7 @@ export class ScoreboardComponent {
         setInterval(() => {
           this.http
             // .get(GetPlayersScore + '?match_id=' + this.matchId)
-            .get(GetTeamScore + '?match_id=' + this.matchId)
+            .get(GetTeamScoreNew + '?match_id=' + this.matchId)
             .subscribe((data) => {
               this.team = data;
             });

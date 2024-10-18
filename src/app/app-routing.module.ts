@@ -9,6 +9,7 @@ import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 import { TeamPageComponent } from './components/team-page/team-page.component';
+import { FinalPtsComponent } from './components/final-pts/final-pts.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'team_page/:team_code',
     component: TeamPageComponent,
+  },
+  {
+    path: 'final_pts',
+    component: FinalPtsComponent,
   },
 ];
 

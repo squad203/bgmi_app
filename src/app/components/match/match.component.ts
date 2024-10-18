@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import {
   createMatch,
   getMatchList,
+  getMatchNew,
   GetTeamScore,
+  GetTeamScoreNew,
   getTournamentList,
 } from '../../config';
 import { HttpBackend, HttpClient } from '@angular/common/http';
@@ -29,13 +31,13 @@ export class MatchComponent {
   Links: any[] = [];
   constructor(private router: Router, private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get(getMatchList).subscribe((res) => {
+    this.http.get(getMatchNew).subscribe((res) => {
       console.log(res);
       this.matchs = res as any[];
     });
   }
   goToscoreboard(id: string) {
-    this.router.navigateByUrl('/scoreboard?match_id=' + id + '&type=player');
+    this.router.navigateByUrl('/scoreboard?match_id=' + id + '&type=team');
   }
   copy(id: string) {
     const selBox = document.createElement('textarea');
@@ -69,7 +71,7 @@ export class MatchComponent {
   openTeamPopup(id: string) {
     this.selectedMatch = id;
     this.http
-      .get(GetTeamScore + '?match_id=' + this.selectedMatch)
+      .get(GetTeamScoreNew + '?match_id=' + this.selectedMatch)
       .subscribe((res) => {
         console.log(res);
         this.teamsList = res as any[];

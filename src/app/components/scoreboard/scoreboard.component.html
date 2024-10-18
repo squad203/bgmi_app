@@ -44,7 +44,7 @@
                             *ngFor="let player of team; let i = index">
                             <td>#{{ i + 1 }}</td>
                             <td class="team"><img width="40"
-                                    [src]="'assets/team/'+player.rank+'.png' || 'assets/team/'+player.rank+'.jpg'"
+                                    [src]="'assets/team/'+player.teamCode+'.png' || 'assets/team/'+player.rank+'.jpg'"
                                     alt="">&nbsp;&nbsp;&nbsp;{{
                                 player.teamName }}
                             </td>

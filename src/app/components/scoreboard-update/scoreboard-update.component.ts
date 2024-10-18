@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GetTeamsByMatch, toggleIsDead, updateKill } from '../../config';
+import {
+  GetTeamsByMatch,
+  GetTeamsByMatchNew,
+  toggleIsDead,
+  toggleIsDeadNew,
+  updateKill,
+  updateKillNew,
+} from '../../config';
 
 @Component({
   selector: 'app-scoreboard-update',
@@ -21,7 +28,7 @@ export class ScoreboardUpdateComponent {
       console.log(this.teamsId);
       if (this.matchId && this.teamsId) {
         this.http
-          .get(GetTeamsByMatch + this.matchId + '/' + this.teamsId)
+          .get(GetTeamsByMatchNew + this.matchId + '/' + this.teamsId)
           .subscribe((data) => {
             this.teams = data;
           });
@@ -30,7 +37,7 @@ export class ScoreboardUpdateComponent {
   }
   deadClick(player_id: any) {
     this.http
-      .put(toggleIsDead + '?player_id=' + player_id, {})
+      .put(toggleIsDeadNew + '?player_id=' + player_id, {})
       .subscribe((res) => {
         console.log(res);
         this.refreshPage();
@@ -41,7 +48,7 @@ export class ScoreboardUpdateComponent {
       return;
     }
     this.http
-      .put(updateKill + '?player_id=' + player_id + '&type=' + type, {})
+      .put(updateKillNew + '?player_id=' + player_id + '&type=' + type, {})
       .subscribe((res) => {
         console.log(res);
         this.refreshPage();
@@ -49,7 +56,7 @@ export class ScoreboardUpdateComponent {
   }
   refreshPage() {
     this.http
-      .get(GetTeamsByMatch + this.matchId + '/' + this.teamsId)
+      .get(GetTeamsByMatchNew + this.matchId + '/' + this.teamsId)
       .subscribe((data) => {
         this.teams = data;
       });
