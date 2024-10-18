@@ -33,6 +33,7 @@
                 <th scope="col" class="text-center">Status</th>
                 <th scope="col" class="text-center">Action</th>
                 <th scope="col" class="text-center">Scoreboard</th>
+                <th scope="col" class="text-center">FinalPTS</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -51,6 +52,7 @@
                 </td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="openTeamPopup(i.id)">Copy MatchId</td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="goToscoreboard(i.id)">Scoreboard</td>
+                <td style="text-decoration: underline; cursor: pointer;" (click)="goToFinalPts(i.id)">😊PTS😊</td>
 
             </tr>
 
@@ -196,8 +198,10 @@
                     d="M4.354 4.354a.5.5 0 0 1 .708 0L8 7.293l3.938-3.939a.5.5 0 0 1 .708.708L8.707 8l3.939 3.938a.5.5 0 0 1-.708.708L8 8.707l-3.938 3.939a.5.5 0 0 1-.708-.708L7.293 8 3.354 4.062a.5.5 0 0 1 0-.708z" />
             </svg>
         </div>
+
         <div class="content">
             <button class="btn btn-primary" (click)="generateUrl()">GetLink</button>
+            <button class="btn btn-danger" (click)="autoCalculateRank()">Auto Calculate Rank</button>
             <input *ngIf="teamsList" type="number" class="inputClass" name="input"
                 (input)="generateMultipleUrl($event)">
             <table class="table  table-striped">
@@ -207,6 +211,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Team Name</th>
                         <th scope="col">Action</th>
+                        <th scope="col">UP</th>
+                        <th scope="col">DOWN</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -218,7 +224,12 @@
                             {{i.teamName}}
                         </td>
                         <td>CopyId</td>
-                        <td style="cursor: pointer; text-decoration: underline;" (click)="copy(i.id)">CopyId</td>
+                        <td style="cursor: pointer; text-decoration: underline;" (click)="copy(i.team_id)">CopyId</td>
+                        <td style="cursor: pointer; " (click)="updateIndex(i.team_id,e)"><img class="arrow up-arr"
+                                src="/assets/icons/up_arr.svg" alt="">
+                        <td style="cursor: pointer; " (click)="updateIndex(i.team_id,e+2)"><img class="arrow down-arr"
+                                src="/assets/icons/up_arr.svg" alt="">
+                        </td>
                     </tr>
                 </tbody>
             </table>

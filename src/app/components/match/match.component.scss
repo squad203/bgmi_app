@@ -1,0 +1,12 @@
+.arrow {
+  width: 25px;
+  padding: 5px;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    background-color: #c2c2c2;
+  }
+}
+.down-arr {
+  transform: rotate(180deg);
+}

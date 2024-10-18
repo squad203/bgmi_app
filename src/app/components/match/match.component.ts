@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  autoCalculateRAnk,
   createMatch,
   getMatchList,
   getMatchNew,
   GetTeamScore,
   GetTeamScoreNew,
+  getTeamsLastRanking,
   getTournamentList,
+  updateRank,
 } from '../../config';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 
@@ -39,6 +42,9 @@ export class MatchComponent {
   goToscoreboard(id: string) {
     this.router.navigateByUrl('/scoreboard?match_id=' + id + '&type=team');
   }
+  goToFinalPts(id: string) {
+    this.router.navigateByUrl('/final_pts?matchId=' + id);
+  }
   copy(id: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
@@ -65,13 +71,52 @@ export class MatchComponent {
     });
     this.createPopup = true;
   }
+  updateIndex(team_id: string, rank: number) {
+    this.http
+      .put(
+        updateRank +
+          '?team_id=' +
+          team_id +
+          '&rank=' +
+          rank +
+          '&match_id=' +
+          this.selectedMatch,
+        {}
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.http
+          .get(getTeamsLastRanking + '?match_id=' + this.selectedMatch)
+          .subscribe((res) => {
+            console.log(res);
+            this.teamsList = res as any[];
+          });
+      });
+  }
+  autoCalculateRank() {
+    let cnf = confirm('Are you sure you want to auto calculate rank?');
+    if (!cnf) {
+      return;
+    }
+    this.http
+      .get(autoCalculateRAnk + '?match_id=' + this.selectedMatch)
+      .subscribe((res) => {
+        console.log(res);
+        this.http
+          .get(getTeamsLastRanking + '?match_id=' + this.selectedMatch)
+          .subscribe((res) => {
+            console.log(res);
+            this.teamsList = res as any[];
+          });
+      });
+  }
   teamId: any[] = [];
   teamsList: any;
   selectedMatch: any;
   openTeamPopup(id: string) {
     this.selectedMatch = id;
     this.http
-      .get(GetTeamScoreNew + '?match_id=' + this.selectedMatch)
+      .get(getTeamsLastRanking + '?match_id=' + this.selectedMatch)
       .subscribe((res) => {
         console.log(res);
         this.teamsList = res as any[];
