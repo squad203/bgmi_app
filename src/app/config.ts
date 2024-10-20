@@ -21,6 +21,7 @@ export const updateKillNew = url + 'player/match_kill/';
 export const getTeamsLastRanking = url + 'player/getTeamsRankingForLast';
 export const autoCalculateRAnk = url + 'player/updateTeamsRankingByKills';
 export const updateRank = url + 'player/match/updateRank';
+export const get_match_by_id = url + 'player/get_match/';
 
 export const createTournament = url + 'bgmi/create/tournament';
 export const getTournamentList = url + 'bgmi/getTournaments';

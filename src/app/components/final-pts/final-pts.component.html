@@ -1,24 +1,14 @@
-<main>
-    <img src="/assets/score_board.jpeg" alt="">
-    <!-- <div class="teams">
-        <p>Avenger</p>
-        <p>85</p>
-        <p>100</p>
-    </div>
-    <div class="teams">
-        <p>Avenger2</p>
-        <p>60</p>
-        <p>69</p>
-    </div> -->
+<main *ngIf="!type">
+    <img *ngIf="teams.length > 10" src="/assets/11_score_board.png" alt="">
+    <img *ngIf="teams.length <= 10" src="/assets/10_score_board.png" alt="">
+
+    <h2>{{match.match_name}}</h2>
     <table>
-        <tr *ngFor="let i of teams">
+        <tr *ngFor="let i of teams;let j = index">
             <td>
                 <p class="team_name">{{i.teamName}}</p>
             </td>
             <td></td>
-            <td></td>
-            <td></td>
-
             <td>{{i.kill}}</td>
             <td></td>
             <td></td>
@@ -30,238 +20,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>15</td>
+            <td>{{placement_marks[j] + i.kill}}</td>
         </tr>
-        <!-- <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
+    </table>
+</main>
+<main *ngIf="type">
+    <img *ngIf="teams.length > 10" src="/assets/11_team_name.png" alt="">
+    <img *ngIf="teams.length <= 10" src="/assets/10_team_name.png" alt="">
+    <h2 class="match_title">{{match.match_name}}</h2>
+    <h2 class="match_type">{{match.match_type}}</h2>
+    <table class="table_team_name">
+        <tr *ngFor="let i of teams;let j = index">
+            <td>
+                <p class="team_name">{{i.teamName}}</p>
+            </td>
         </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>team NAme</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>15</td>
-        </tr> -->
     </table>
 </main>

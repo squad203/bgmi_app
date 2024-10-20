@@ -1,15 +1,29 @@
 main {
+  img {
+    width: 1200px;
+  }
+  h2 {
+    position: absolute;
+    z-index: 999;
+    top: 70px;
+    left: 110px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    width: 270px;
+    overflow: hidden;
+  }
   table {
     position: absolute;
     z-index: 999;
-    top: 150px;
+    top: 140px;
     left: 180px;
     color: white;
     font-size: 25px;
     font-weight: bold;
     tr {
       td {
-        padding: 4.4px 10px;
+        padding: 3px 10px;
         // text-align: center;
       }
       .team_name {
@@ -21,5 +35,28 @@ main {
         white-space: nowrap;
       }
     }
+  }
+  .table_team_name {
+    top: 125px;
+  }
+  .match_type {
+    overflow: visible;
+    left: 450px;
+    top: 140px;
+    font-size: 70px;
+    white-space: nowrap;
+    font-family: Anton;
+    color: #ffe700;
+    text-shadow: 8px 10px 10px #000;
+  }
+  .match_title {
+    overflow: visible;
+    left: 450px;
+    top: 240px;
+    font-family: Anton;
+    font-size: 70px;
+    color: #ffe700;
+    white-space: nowrap;
+    text-shadow: 8px 10px 10px #000;
   }
 }

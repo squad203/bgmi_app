@@ -45,6 +45,9 @@ export class MatchComponent {
   goToFinalPts(id: string) {
     this.router.navigateByUrl('/final_pts?matchId=' + id);
   }
+  goToNames(id: string) {
+    this.router.navigateByUrl('/final_pts?matchId=' + id + '&type=team');
+  }
   copy(id: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
