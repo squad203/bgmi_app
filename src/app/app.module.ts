@@ -16,6 +16,7 @@ import { ThanksComponent } from './thanks/thanks.component';
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 import { TeamPageComponent } from './components/team-page/team-page.component';
 import { FinalPtsComponent } from './components/final-pts/final-pts.component';
+import { KillAnimationComponent } from './components/kill-animation/kill-animation.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FinalPtsComponent } from './components/final-pts/final-pts.component';
     ScoreboardUpdateComponent,
     TeamPageComponent,
     FinalPtsComponent,
+    KillAnimationComponent,
   ],
   imports: [
     BrowserModule,

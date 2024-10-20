@@ -10,6 +10,7 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { ScoreboardUpdateComponent } from './components/scoreboard-update/scoreboard-update.component';
 import { TeamPageComponent } from './components/team-page/team-page.component';
 import { FinalPtsComponent } from './components/final-pts/final-pts.component';
+import { KillAnimationComponent } from './components/kill-animation/kill-animation.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'final_pts',
     component: FinalPtsComponent,
+  },
+  {
+    path: 'kill_animation',
+    component: KillAnimationComponent,
   },
 ];
 

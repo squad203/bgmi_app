@@ -13,7 +13,7 @@
                         *ngIf="!player.is_dead">EL</button>
                     <button (click)="deadClick(player.id)" class="btn btn-success mb-3"
                         *ngIf="player.is_dead">RV</button>
-                    <p class="mb-3">{{player.player_name}} </p>
+                    <p class="mb-3">{{player.game_name}} </p>
                     <div class="t-button mb-3">
                         <button (click)="updateClick(player.id,'remove',player.kill)" class="btn btn-danger"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"

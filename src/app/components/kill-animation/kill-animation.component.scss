@@ -1,0 +1,47 @@
+main {
+  background-color: green;
+  width: 100vw;
+  height: 100vh;
+  .elimination {
+    img {
+      width: 500px;
+    }
+    .eliminate {
+      position: absolute;
+      display: flex;
+      width: 500px;
+      top: 60px;
+      left: 22px;
+      align-items: center;
+      img {
+        width: 160px;
+        border-radius: 100px;
+      }
+      .matter {
+        $margin: 4px;
+        h1 {
+          font-size: 40px;
+          margin-left: 10px;
+          margin-top: 0px;
+          height: 86.5px;
+          justify-self: center;
+          align-self: center;
+          color: white;
+          white-space: nowrap;
+          background-color: #feaf65;
+          border-radius: 100px;
+          text-align: center;
+          padding-top: 15px;
+          padding-right: 20px;
+        }
+        h2 {
+          color: white;
+          font-size: 20px;
+          margin-left: 20px;
+          // margin-top: 25px;
+          padding-top: calc(10px - #{$margin});
+        }
+      }
+    }
+  }
+}

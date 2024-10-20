@@ -32,9 +32,11 @@
                 <th scope="col">Teams</th>
                 <th scope="col" class="text-center">Status</th>
                 <th scope="col" class="text-center">Action</th>
+                <th scope="col" class="text-center">Update</th>
                 <th scope="col" class="text-center">Scoreboard</th>
                 <th scope="col" class="text-center">TeamBanner</th>
                 <th scope="col" class="text-center">FinalPTS</th>
+                <th scope="col" class="text-center">KillAnime</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -51,10 +53,14 @@
                     [ngClass]="{'pending':i.match_status == 'pending','approved':i.match_status == 'completed','reject':i.match_status == 'canceled'}">
                     <p>{{i.match_status}}</p>
                 </td>
-                <td style="text-decoration: underline; cursor: pointer;" (click)="openTeamPopup(i.id)">Copy MatchId</td>
+                <td style="text-decoration: underline; cursor: pointer;" (click)="openTeamPopup(i.id)">Teams</td>
+                <td style="text-decoration: underline; cursor: pointer;" (click)="openFullScoreBoard(i.id)">SCUPDATE
+                </td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="goToscoreboard(i.id)">Scoreboard</td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="goToNames(i.id)">😊NAMES😊</td>
                 <td style="text-decoration: underline; cursor: pointer;" (click)="goToFinalPts(i.id)">😊PTS😊</td>
+                <td style="text-decoration: underline; cursor: pointer;" (click)="goToKillAnime(i.id)">💀KillAnime💀
+                </td>
 
             </tr>
 

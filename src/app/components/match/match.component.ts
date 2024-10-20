@@ -40,13 +40,34 @@ export class MatchComponent {
     });
   }
   goToscoreboard(id: string) {
-    this.router.navigateByUrl('/scoreboard?match_id=' + id + '&type=team');
+    const baseUrl = window.location.origin; // Gets the base URL (e.g., http://localhost:4200)
+
+    const url = baseUrl + '/#/scoreboard?match_id=' + id + '&type=team';
+    console.log(url);
+
+    window.open(url, '_blank');
+  }
+  goToKillAnime(id: string) {
+    const baseUrl = window.location.origin; // Gets the base URL (e.g., http://localhost:4200)
+
+    // this.router.navigateByUrl('/kill_animation?match_id=' + id + '&type=team');
+    const url = baseUrl + '/#/kill_animation?match_id=' + id + '&type=team';
+    console.log(url);
+    window.open(url, '_blank');
   }
   goToFinalPts(id: string) {
-    this.router.navigateByUrl('/final_pts?matchId=' + id);
+    // this.router.navigateByUrl('/final_pts?matchId=' + id);
+    const baseUrl = window.location.origin; // Gets the base URL (e.g., http://localhost:4200)
+    const url = baseUrl + '/#/final_pts?matchId=' + id;
+    console.log(url);
+    window.open(url, '_blank');
   }
   goToNames(id: string) {
-    this.router.navigateByUrl('/final_pts?matchId=' + id + '&type=team');
+    // this.router.navigateByUrl('/final_pts?matchId=' + id + '&type=team');
+    const baseUrl = window.location.origin; // Gets the base URL (e.g., http://localhost:4200)
+    const url = baseUrl + '/#/final_pts?matchId=' + id + '&type=team';
+    console.log(url);
+    window.open(url, '_blank');
   }
   copy(id: string) {
     const selBox = document.createElement('textarea');
@@ -142,6 +163,7 @@ export class MatchComponent {
     this.copy(url);
     this.Links = [url];
   }
+
   chunkArray(array: any[], chunkSize: number) {
     const chunks = [];
     for (let i = 0; i < array.length; i += chunkSize) {
@@ -151,6 +173,7 @@ export class MatchComponent {
     return chunks;
   }
   generateMultipleUrl(event: any) {
+    this.Links = [];
     let number = event.target.value;
     console.log(number);
     let ids = [];
@@ -170,11 +193,39 @@ export class MatchComponent {
       );
     }
   }
+  openFullScoreBoard(match_id: string) {
+    this.Links = [];
+
+    this.http
+      .get(getTeamsLastRanking + '?match_id=' + match_id)
+      .subscribe((res) => {
+        console.log(res);
+        this.teamsList = res as any[];
+        let ids = [];
+        for (let i = 0; i < this.teamsList.length; i++) {
+          const element = this.teamsList[i];
+          ids.push(element.team_id);
+        }
+        var arrayList = this.chunkArray(ids, this.teamsList.length);
+        console.log(arrayList);
+
+        for (let i = 0; i < arrayList.length; i++) {
+          const element = arrayList[i];
+          this.Links.push(
+            `https://bgmiform.netlify.app/#/scoreboardUpdate/${match_id}/${element.join(
+              ','
+            )}`
+          );
+        }
+        window.open(this.Links[0], '_blank');
+      });
+  }
   closePopup() {
     this.createPopup = false;
   }
   closeTeamPopup() {
     this.teamPopup = false;
+    this.Links = [];
   }
   navigateToTeam(matchName: string) {
     // Navigate to team component

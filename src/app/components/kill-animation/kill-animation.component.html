@@ -1,0 +1,14 @@
+<main>
+    <div class="elimination" *ngFor="let i of team; ">
+        <div *ngIf="i.showElimination">
+            <img src="assets/eliminated.png" alt="">
+            <div class="eliminate">
+                <img src="/assets/team/{{i.teamCode}}.png" alt="">
+                <div class="matter">
+                    <h1>{{i.teamName}}</h1>
+                    <h2>Eliminated</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

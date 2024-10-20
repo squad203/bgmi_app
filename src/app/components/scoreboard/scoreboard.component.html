@@ -44,7 +44,7 @@
                             *ngFor="let player of team; let i = index">
                             <td>#{{ i + 1 }}</td>
                             <td class="team"><img width="40"
-                                    [src]="'assets/team/'+player.teamCode+'.png' || 'assets/team/'+player.rank+'.jpg'"
+                                    [src]="'assets/team/'+player.teamCode+'.png' || 'assets/team/'+player.teamCode+'.png'"
                                     alt="">&nbsp;&nbsp;{{player.teamName }}
                             </td>
                             <td *ngIf="!player.is_eliminated" [ngClass]="{'d-none':player.is_eliminated}">{{ player.kill

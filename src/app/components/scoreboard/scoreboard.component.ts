@@ -24,6 +24,8 @@ export class ScoreboardComponent {
   type: any;
   mainTeam: any[] = [];
   logoUrl = logoUrl;
+  apiCall: any;
+  interval: any;
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log(params);
@@ -34,8 +36,8 @@ export class ScoreboardComponent {
       console.log(this.type);
 
       if (this.matchId && this.type == 'player') {
-        setInterval(() => {
-          this.http
+        this.interval = setInterval(() => {
+          this.apiCall = this.http
             // .get(GetPlayersScore + '?match_id=' + this.matchId)
             .get(GetPlayersScore + '/?match_id=' + this.matchId)
             .subscribe((data) => {
@@ -45,8 +47,8 @@ export class ScoreboardComponent {
       }
 
       if (this.matchId && this.type == 'team') {
-        setInterval(() => {
-          this.http
+        this.interval = setInterval(() => {
+          this.apiCall = this.http
             // .get(GetPlayersScore + '?match_id=' + this.matchId)
             .get(GetTeamScoreNew + '?match_id=' + this.matchId)
             .subscribe((data) => {
@@ -55,5 +57,9 @@ export class ScoreboardComponent {
         }, 1000);
       }
     });
+  }
+  ngOnDestroy() {
+    this.apiCall.unsubscribe();
+    clearInterval(this.interval);
   }
 }
