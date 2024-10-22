@@ -118,8 +118,8 @@ export class MatchComponent {
       });
   }
   autoCalculateRank() {
-    let cnf = confirm('Are you sure you want to auto calculate rank?');
-    if (!cnf) {
+    let cnf = prompt('Are you sure you want to auto calculate rank?');
+    if (cnf != 'DronaIsBest') {
       return;
     }
     this.http

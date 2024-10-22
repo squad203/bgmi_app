@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { get_match_by_id, getTeamsLastRanking } from '../../config';
+import {
+  get_match_by_id,
+  GetTeamScoreNew,
+  getTeamsLastRanking,
+} from '../../config';
 
 @Component({
   selector: 'app-final-pts',
@@ -11,7 +15,7 @@ import { get_match_by_id, getTeamsLastRanking } from '../../config';
 export class FinalPtsComponent {
   constructor(private activeRoute: ActivatedRoute, private http: HttpClient) {}
   matchId: any;
-  teams: any;
+  teams: any[] = [];
   type: any;
   placement_marks = [12, 11, 10, 8, 6, 4, 2, 1, 1, 1, 0];
   match: any;
@@ -26,8 +30,15 @@ export class FinalPtsComponent {
         });
         this.http
           .get(getTeamsLastRanking + '?match_id=' + this.matchId)
-          .subscribe((data) => {
+          .subscribe((data: any) => {
             this.teams = data;
+            this.teams.forEach((team: any, index: number) => {
+              team.placement = this.placement_marks[index];
+              team.total = this.placement_marks[index] + team.kill;
+            });
+            this.teams = this.teams.sort((a, b) => {
+              return b.total - a.total;
+            });
           });
       }
     });

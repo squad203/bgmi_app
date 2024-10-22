@@ -57,7 +57,7 @@ export class KillAnimationComponent {
                 console.log(timeDifference, item.teamName);
 
                 // If the difference is less than 3 seconds, show animation
-                if (timeDifference <= 4) {
+                if (timeDifference <= 7) {
                   item.showElimination = true;
                   console.log('showElimination', item.showElimination);
                 } else {
