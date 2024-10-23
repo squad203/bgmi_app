@@ -17,7 +17,7 @@ export class FinalPtsComponent {
   matchId: any;
   teams: any[] = [];
   type: any;
-  placement_marks = [12, 11, 10, 8, 6, 4, 2, 1, 1, 1, 0];
+  placement_marks = [12, 11, 10, 8, 6, 4, 2, 1, 1, 1, 0, 0];
   match: any;
   ngOnInit() {
     this.activeRoute.queryParams.subscribe((param: any) => {

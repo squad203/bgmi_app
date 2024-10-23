@@ -1,5 +1,6 @@
 <main *ngIf="!type">
-    <img *ngIf="teams.length > 10" src="/assets/11_score_board.png" alt="">
+    <img *ngIf="teams.length > 11" src="/assets/12_score_board.png" alt="">
+    <img *ngIf="teams.length == 11" src="/assets/11_score_board.png" alt="">
     <img *ngIf="teams.length <= 10" src="/assets/10_score_board.png" alt="">
 
     <h2>{{match.match_name}}</h2>
@@ -28,7 +29,8 @@
     </table>
 </main>
 <main *ngIf="type">
-    <img *ngIf="teams.length > 10" src="/assets/11_team_name.png" alt="">
+    <img *ngIf="teams.length >11" src="/assets/12_team_name.png" alt="">
+    <img *ngIf="teams.length ==11" src="/assets/11_team_name.png" alt="">
     <img *ngIf="teams.length <= 10" src="/assets/10_team_name.png" alt="">
     <h2 class="match_title">{{match.match_name}}</h2>
     <h2 class="match_type">{{match.match_type}}</h2>
